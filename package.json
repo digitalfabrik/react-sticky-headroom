@@ -10,7 +10,8 @@
   "author": "Michael Markl <marklmichael98@gmail.com>",
   "repository": "https://github.com/integreat-app/sticky-headroom",
   "files": [
-    "dist"
+    "index.js",
+    "index.js.flow"
   ],
   "publishConfig": {
     "access": "public"
@@ -23,7 +24,7 @@
     "header",
     "styled-components"
   ],
-  "module": "dist/index.js",
+  "module": "index.js",
   "scripts": {
     "build": "node tools/build.js",
     "test": "jest --config jest.config.json",

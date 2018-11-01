@@ -1,4 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
+
+index.js
+index.js.flow
+
 ### Node template
 # Logs
 logs
