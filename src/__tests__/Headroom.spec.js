@@ -22,7 +22,7 @@ describe('Headroom', () => {
 
   it('should have correct default state', () => {
     const component = createComponent()
-    expect(component.state()).toEqual({ mode: 'static', transition: false })
+    expect(component.state()).toEqual({ mode: 'static', transition: 'none' })
     expect(component.prop('pinStart')).toEqual(0)
   })
 
@@ -80,7 +80,7 @@ describe('Headroom', () => {
       }
       scrollTo(0)
       scrollTo(pinStart / 2)
-      expect(component.state()).toEqual({ mode: 'static', transition: false })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'none' })
     })
 
     it('should set correct state, if user has scrolled down to pinStart + scrollHeight/2', () => {
@@ -92,7 +92,7 @@ describe('Headroom', () => {
 
       scrollTo(0)
       scrollTo(pinStart + scrollHeight / 2)
-      expect(component.state()).toEqual({ mode: 'static', transition: false })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'none' })
     })
 
     it('should set correct state, if user has scrolled down and back up again', () => {
@@ -103,23 +103,23 @@ describe('Headroom', () => {
       }
 
       scrollTo(pinStart)
-      expect(component.state()).toEqual({ mode: 'static', transition: false })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'none' })
 
       const offset = 5
       scrollTo(pinStart + scrollHeight)
       // Header is completely transformed to the top
-      expect(component.state()).toEqual({ mode: 'static', transition: false })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'none' })
 
       scrollTo(pinStart + scrollHeight + offset)
       // Header should be unpinned now, transitions should be off though
-      expect(component.state()).toEqual({ mode: 'unpinned', transition: false })
+      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none' })
 
       scrollTo(pinStart + scrollHeight)
       // Header should be pinned with transition, because we're scrolling upwards
-      expect(component.state()).toEqual({ mode: 'pinned', transition: true })
+      expect(component.state()).toEqual({ mode: 'pinned', transition: 'normal' })
 
       scrollTo(pinStart)
-      expect(component.state()).toEqual({ mode: 'static', transition: false })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'pinned-to-static' })
     })
 
     it('shouldn\'t update state update is called with same scrollTop', () => {
@@ -130,9 +130,9 @@ describe('Headroom', () => {
       }
       const offset = 5
       scrollTo(pinStart + scrollHeight + offset)
-      expect(component.state()).toEqual({ mode: 'unpinned', transition: false })
+      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none' })
       scrollTo(pinStart + scrollHeight + offset)
-      expect(component.state()).toEqual({ mode: 'unpinned', transition: false })
+      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none' })
     })
 
     it('should call onStickyTopChanged if mode has changed', () => {
@@ -152,25 +152,25 @@ describe('Headroom', () => {
 
   it('should render correct if state is static, no transition', () => {
     const component = createComponent({ pinStart, height, scrollHeight })
-    component.setState({ mode: 'static', transition: false })
+    component.setState({ mode: 'static', transition: 'none' })
     expect(component).toMatchSnapshot()
   })
 
   it('should render correct if state is unpinned, no transition', () => {
     const component = createComponent({ pinStart, height, scrollHeight })
-    component.setState({ mode: 'unpinned', transition: false })
+    component.setState({ mode: 'unpinned', transition: 'none' })
     expect(component).toMatchSnapshot()
   })
 
   it('should render correct if state is unpinned, transition', () => {
     const component = createComponent({ pinStart, height, scrollHeight })
-    component.setState({ mode: 'unpinned', transition: true })
+    component.setState({ mode: 'unpinned', transition: 'normal' })
     expect(component).toMatchSnapshot()
   })
 
   it('should render correct if state is pinned, transition', () => {
     const component = createComponent({ pinStart, height, scrollHeight })
-    component.setState({ mode: 'pinned', transition: true })
+    component.setState({ mode: 'pinned', transition: 'normal' })
     expect(component).toMatchSnapshot()
   })
 })
