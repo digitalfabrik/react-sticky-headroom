@@ -1,11 +1,28 @@
 {
-  "name": "@integreat/sticky-headroom",
-  "version": "0.0.1",
-  "private": false,
+  "name": "@integreat-app/sticky-headroom",
+  "version": "1.0.0",
   "engines": {
     "node": ">=6.9",
     "npm": ">=3.8"
   },
+  "license": "MIT",
+  "description": "A react component for hiding the header when scrolling.",
+  "author": "Michael Markl <marklmichael98@gmail.com>",
+  "repository": "https://github.com/integreat-app/sticky-headroom",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "headroom",
+    "sticky",
+    "react",
+    "hide",
+    "header",
+    "styled-components"
+  ],
   "module": "dist/index.js",
   "scripts": {
     "build": "node tools/build.js",
