@@ -3,7 +3,7 @@
 
 StickyHeadroom is a React component, that hides your header when you scroll down and shows it
 once you're scrolling up again.
-It's designed for best performance and can only be used, when you know the height of your header
+It's designed for best performance and can only be used if you know the height of your header
 component (or more precisely the amount of pixels you want StickyHeadroom to hide).
 This helps us avoid calculating the height ourselves and therefore browsers don't need to perform
 heavy Recalculate-Style-Phases.
