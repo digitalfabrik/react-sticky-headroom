@@ -3,6 +3,7 @@
 import * as React from 'react'
 import { mount, shallow } from 'enzyme'
 import Headroom from '../Headroom'
+import 'jest-styled-components'
 
 const pinStart = 10
 const height = 100
@@ -10,12 +11,10 @@ const scrollHeight = 50
 
 describe('Headroom', () => {
   const MockNode = () => <div />
-  const MockAncestor = () => <div />
 
   const createComponent = props => mount(
     <Headroom scrollHeight={50}
               height={100}
-              stickyAncestor={<MockAncestor />}
               {...props}>
       <MockNode />
     </Headroom>)
@@ -119,7 +118,7 @@ describe('Headroom', () => {
       expect(component.state()).toEqual({ mode: 'pinned', transition: 'normal' })
 
       scrollTo(pinStart)
-      expect(component.state()).toEqual({ mode: 'static', transition: 'pinned-to-static' })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'pinned-to-static', keyframes: expect.anything() })
     })
 
     it('shouldn\'t update state update is called with same scrollTop', () => {

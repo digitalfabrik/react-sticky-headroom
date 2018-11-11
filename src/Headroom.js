@@ -1,6 +1,6 @@
 // @flow
 
-import type { Element, Node } from 'react'
+import type { Node } from 'react'
 import * as React from 'react'
 import styled, { keyframes } from 'styled-components'
 
@@ -26,9 +26,7 @@ type PropsType = {|
   scrollHeight: number,
   /** The minimum scrollTop position where the transform should start */
   pinStart: number,
-  /** Gets rendered with a corresponding stickyTop prop as an ancestor */
-  stickyAncestor?: Element<*>,
-  /** Used for rendering stickyTop position of stickyAncestor */
+  /** Used for calculating the stickyTop position of an ancestor */
   height?: number,
   /** Fired, when Headroom changes its state. Passes stickyTop of the ancestor. */
   onStickyTopChanged?: (number) => void,
@@ -38,7 +36,8 @@ type PropsType = {|
 
 type StateType = {|
   mode: ModeType,
-  transition: TransitionType
+  transition: TransitionType,
+  keyframes: ?string
 |}
 
 const HeaderWrapper = styled.div`
@@ -48,10 +47,7 @@ const HeaderWrapper = styled.div`
   transform: translateY(${props => props.translateY}px);
   ${props => props.transition === NORMAL_TRANSITION &&
     `transition: transform 0.2s ease-out;`}
-  ${props => props.transition === PINNED_TO_STATIC && `animation: ${keyframes`
-    from { transform: translateY(${props.pinnedToStaticThreshold}px)}
-    to { transform: translateY(0px)}
-`} 0.2s ease-out;`}
+  ${props => props.transition === PINNED_TO_STATIC && `animation: ${props.keyframes} 0.2s ease-out;`}
   ${props => props.static && `transition: none;`}
 `
 
@@ -60,13 +56,10 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     pinStart: 0
   }
 
-  state = { mode: STATIC, transition: NO_TRANSITION }
+  state = { mode: STATIC, transition: NO_TRANSITION, keyframes: null }
 
   /** the very last scrollTop which we know about (to determine direction changes) */
   lastKnownScrollTop = 0
-
-  /** the value used to animate in the special case from pinned to static mode */
-  pinnedToStaticThreshold = 0
 
   /**
    * @returns {number} the current scrollTop position of the window
@@ -150,22 +143,27 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
    */
   update = () => {
     const currentScrollTop = Headroom.getScrollTop()
+    const newState = {}
     if (currentScrollTop === this.lastKnownScrollTop) {
       return
     }
     const direction = this.lastKnownScrollTop < currentScrollTop ? DOWNWARDS
       : UPWARDS
-    const mode = this.determineMode(currentScrollTop, direction)
-    const transition = this.determineTransition(mode, direction)
+    newState.mode = this.determineMode(currentScrollTop, direction)
+    newState.transition = this.determineTransition(newState.mode, direction)
 
     const { onStickyTopChanged, height, scrollHeight, pinStart } = this.props
-    if (this.state.mode === PINNED && mode === STATIC) {
-      this.pinnedToStaticThreshold = currentScrollTop - pinStart
+    if (this.state.mode === PINNED && newState.mode === STATIC) {
+      // animation in the special case from pinned to static
+      newState.keyframes = keyframes`
+          from { transform: translateY(${currentScrollTop - pinStart}px)}
+          to { transform: translateY(0px)}
+      `
     }
-    if (onStickyTopChanged && mode !== this.state.mode && height) {
-      onStickyTopChanged(Headroom.calcStickyTop(mode, height, scrollHeight))
+    if (onStickyTopChanged && newState.mode !== this.state.mode && height) {
+      onStickyTopChanged(Headroom.calcStickyTop(newState.mode, height, scrollHeight))
     }
-    this.setState({ mode, transition })
+    this.setState(newState)
     this.lastKnownScrollTop = currentScrollTop
   }
 
@@ -183,18 +181,12 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
 
   render () {
     const {
-      stickyAncestor,
       children,
-      height,
       scrollHeight,
       positionStickyDisabled
     } = this.props
     const { mode, transition } = this.state
     const transform = mode === UNPINNED ? -scrollHeight : 0
-    if (stickyAncestor && !height) {
-      console.warn(
-        'Headroom: If you supply stickyAncestor, you must define height!')
-    }
     const ownStickyTop = mode === STATIC ? -scrollHeight : 0
     return (
         <>
@@ -203,13 +195,9 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
               top={ownStickyTop}
               transition={transition}
               positionStickyDisabled={positionStickyDisabled}
-              pinnedToStaticThreshold={this.pinnedToStaticThreshold}
               static={mode === STATIC}>
             {children}
           </HeaderWrapper>
-          {stickyAncestor && height &&
-          React.cloneElement(stickyAncestor,
-            { stickyTop: Headroom.calcStickyTop(mode, height, scrollHeight) })}
         </>
     )
   }
