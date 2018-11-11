@@ -156,8 +156,13 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     if (this.state.mode === PINNED && newState.mode === STATIC) {
       // animation in the special case from pinned to static
       newState.keyframes = keyframes`
-          from { transform: translateY(${currentScrollTop - pinStart}px)}
-          to { transform: translateY(0px)}
+        from {
+          transform: translateY(${currentScrollTop - pinStart}px)
+        }
+
+        to {
+          transform: translateY(0)
+        }
       `
     }
     if (onStickyTopChanged && newState.mode !== this.state.mode && height) {
