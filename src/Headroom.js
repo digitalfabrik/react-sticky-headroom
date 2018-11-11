@@ -56,7 +56,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     pinStart: 0
   }
 
-  state = { mode: STATIC, transition: NO_TRANSITION }
+  state = { mode: STATIC, transition: NO_TRANSITION, keyframes: null }
 
   /** the very last scrollTop which we know about (to determine direction changes) */
   lastKnownScrollTop = 0
