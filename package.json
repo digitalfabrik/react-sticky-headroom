@@ -1,6 +1,6 @@
 {
-  "name": "@integreat-app/sticky-headroom",
-  "version": "1.0.2",
+  "name": "@integreat-app/react-sticky-headroom",
+  "version": "1.0.3",
   "engines": {
     "node": ">=6.9",
     "npm": ">=3.8"
@@ -8,7 +8,7 @@
   "license": "MIT",
   "description": "A react component for hiding the header when scrolling.",
   "author": "Michael Markl <marklmichael98@gmail.com>",
-  "repository": "https://github.com/integreat/sticky-headroom",
+  "repository": "https://github.com/integreat/react-sticky-headroom",
   "files": [
     "index.js",
     "index.js.flow"

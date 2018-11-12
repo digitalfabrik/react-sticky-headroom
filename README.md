@@ -1,7 +1,7 @@
 # StickyHeadroom
-[![npm badge](https://img.shields.io/npm/v/@integreat-app/sticky-headroom.svg)](https://www.npmjs.com/package/@integreat-app/sticky-headroom)
+[![npm badge](https://img.shields.io/npm/v/@integreat-app/react-sticky-headroom.svg)](https://www.npmjs.com/package/@integreat-app/sticky-headroom)
 
-StickyHeadroom is a React component, that hides your header when you scroll down and shows it
+ReactStickyHeadroom is a React component, that hides your header when you scroll down and shows it
 once you're scrolling up again.
 It's designed for best performance and can only be used if you know the height of your header
 component (or more precisely the amount of pixels you want StickyHeadroom to hide).
@@ -11,6 +11,7 @@ For more information read [here](https://developers.google.com/web/fundamentals/
 
 Since it's using [styled-components](https://www.styled-components.com/) internally, it's best to 
 use it in apps where you already have styled-components in place.
+The component is only compatible with styled-components v4.x.x.
 
 The component is inspired by [react-headroom](https://kyleamathews.github.io/react-headroom/).
 
