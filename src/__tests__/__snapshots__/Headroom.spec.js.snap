@@ -32,10 +32,10 @@ exports[`Headroom should render correct if state is pinned, transition 1`] = `
   >
     <StyledComponent
       animateUpFrom={null}
-      forwardedClass={
+      forwardedComponent={
         Object {
           "$$typeof": Symbol(react.forward_ref),
-          "attrs": undefined,
+          "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
             "isStatic": false,
@@ -56,6 +56,7 @@ exports[`Headroom should render correct if state is pinned, transition 1`] = `
             ],
           },
           "displayName": "Headroom__HeaderWrapper",
+          "foldedComponentIds": Array [],
           "render": [Function],
           "styledComponentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
           "target": "div",
@@ -113,10 +114,10 @@ exports[`Headroom should render correct if state is static, no transition 1`] = 
   >
     <StyledComponent
       animateUpFrom={null}
-      forwardedClass={
+      forwardedComponent={
         Object {
           "$$typeof": Symbol(react.forward_ref),
-          "attrs": undefined,
+          "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
             "isStatic": false,
@@ -137,6 +138,7 @@ exports[`Headroom should render correct if state is static, no transition 1`] = 
             ],
           },
           "displayName": "Headroom__HeaderWrapper",
+          "foldedComponentIds": Array [],
           "render": [Function],
           "styledComponentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
           "target": "div",
@@ -192,10 +194,10 @@ exports[`Headroom should render correct if state is unpinned, no transition 1`] 
   >
     <StyledComponent
       animateUpFrom={null}
-      forwardedClass={
+      forwardedComponent={
         Object {
           "$$typeof": Symbol(react.forward_ref),
-          "attrs": undefined,
+          "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
             "isStatic": false,
@@ -216,6 +218,7 @@ exports[`Headroom should render correct if state is unpinned, no transition 1`] 
             ],
           },
           "displayName": "Headroom__HeaderWrapper",
+          "foldedComponentIds": Array [],
           "render": [Function],
           "styledComponentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
           "target": "div",
@@ -274,10 +277,10 @@ exports[`Headroom should render correct if state is unpinned, transition 1`] = `
   >
     <StyledComponent
       animateUpFrom={null}
-      forwardedClass={
+      forwardedComponent={
         Object {
           "$$typeof": Symbol(react.forward_ref),
-          "attrs": undefined,
+          "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
             "isStatic": false,
@@ -298,6 +301,7 @@ exports[`Headroom should render correct if state is unpinned, transition 1`] = `
             ],
           },
           "displayName": "Headroom__HeaderWrapper",
+          "foldedComponentIds": Array [],
           "render": [Function],
           "styledComponentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
           "target": "div",
@@ -369,10 +373,10 @@ exports[`Headroom should render with values from its state 1`] = `
   >
     <StyledComponent
       animateUpFrom={null}
-      forwardedClass={
+      forwardedComponent={
         Object {
           "$$typeof": Symbol(react.forward_ref),
-          "attrs": undefined,
+          "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
             "isStatic": false,
@@ -393,6 +397,7 @@ exports[`Headroom should render with values from its state 1`] = `
             ],
           },
           "displayName": "Headroom__HeaderWrapper",
+          "foldedComponentIds": Array [],
           "render": [Function],
           "styledComponentId": "Headroom__HeaderWrapper-sc-16d3zk-0",
           "target": "div",
