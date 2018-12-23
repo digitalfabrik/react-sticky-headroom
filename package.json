@@ -27,6 +27,7 @@
   "module": "index.js",
   "scripts": {
     "build": "node tools/build.js",
+    "build:demo": "node tools/build.demo.js",
     "test": "jest --config jest.config.json",
     "test:coverage": "jest --config jest.config.json --coverage",
     "test:watch": "jest --config jest.config.json --watchAll",

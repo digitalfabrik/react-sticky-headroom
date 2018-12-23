@@ -3,3 +3,4 @@ __coverage__
 /node_modules/
 index.js
 index.js.flow
+/docs
