@@ -25,6 +25,13 @@ render () {
 }
 ```
 
+## Demo
+
+Go to [https://integreat.github.io/react-sticky-headroom/](https://integreat.github.io/react-sticky-headroom/) to view a demo:
+
+[![demo gif](demo.gif)](https://www.npmjs.com/package/@integreat-app/react-sticky-headroom)
+
+
 ## API
 You can pass the following props to StickyHeadroom:
 * `children: React.Node` The header component, that should be hidden and revealed
