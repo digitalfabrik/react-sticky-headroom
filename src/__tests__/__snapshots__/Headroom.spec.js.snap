@@ -6,13 +6,13 @@ exports[`Headroom should render correct if state is pinned, transition 1`] = `
   position: sticky;
   top: 0px;
   z-index: 1;
-  -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
   -webkit-transform: translateY(0px);
   -ms-transform: translateY(0px);
   transform: translateY(0px);
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
   -webkit-transition: -webkit-transform 0.2s ease-out;
   -webkit-transition: transform 0.2s ease-out;
   transition: transform 0.2s ease-out;
@@ -45,9 +45,9 @@ exports[`Headroom should render correct if state is pinned, transition 1`] = `
               [Function],
               ";top:",
               [Function],
-              "px;z-index:1;animation-timing-function:ease-out;animation-duration:0.2s;transform:translateY(",
+              "px;z-index:1;transform:translateY(",
               [Function],
-              "px);",
+              "px);animation-duration:0.2s;animation-timing-function:ease-out;",
               [Function],
               " ",
               [Function],
@@ -88,13 +88,13 @@ exports[`Headroom should render correct if state is static, no transition 1`] = 
   position: sticky;
   top: -50px;
   z-index: 1;
-  -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
   -webkit-transform: translateY(0px);
   -ms-transform: translateY(0px);
   transform: translateY(0px);
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
   -webkit-transition: none;
   transition: none;
 }
@@ -126,9 +126,9 @@ exports[`Headroom should render correct if state is static, no transition 1`] = 
               [Function],
               ";top:",
               [Function],
-              "px;z-index:1;animation-timing-function:ease-out;animation-duration:0.2s;transform:translateY(",
+              "px;z-index:1;transform:translateY(",
               [Function],
-              "px);",
+              "px);animation-duration:0.2s;animation-timing-function:ease-out;",
               [Function],
               " ",
               [Function],
@@ -169,13 +169,13 @@ exports[`Headroom should render correct if state is unpinned, no transition 1`] 
   position: sticky;
   top: 0px;
   z-index: 1;
-  -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
   -webkit-transform: translateY(-50px);
   -ms-transform: translateY(-50px);
   transform: translateY(-50px);
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
 }
 
 <Headroom
@@ -205,9 +205,9 @@ exports[`Headroom should render correct if state is unpinned, no transition 1`] 
               [Function],
               ";top:",
               [Function],
-              "px;z-index:1;animation-timing-function:ease-out;animation-duration:0.2s;transform:translateY(",
+              "px;z-index:1;transform:translateY(",
               [Function],
-              "px);",
+              "px);animation-duration:0.2s;animation-timing-function:ease-out;",
               [Function],
               " ",
               [Function],
@@ -248,13 +248,13 @@ exports[`Headroom should render correct if state is unpinned, transition 1`] = `
   position: sticky;
   top: 0px;
   z-index: 1;
-  -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
   -webkit-transform: translateY(-50px);
   -ms-transform: translateY(-50px);
   transform: translateY(-50px);
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
   -webkit-transition: -webkit-transform 0.2s ease-out;
   -webkit-transition: transform 0.2s ease-out;
   transition: transform 0.2s ease-out;
@@ -287,9 +287,9 @@ exports[`Headroom should render correct if state is unpinned, transition 1`] = `
               [Function],
               ";top:",
               [Function],
-              "px;z-index:1;animation-timing-function:ease-out;animation-duration:0.2s;transform:translateY(",
+              "px;z-index:1;transform:translateY(",
               [Function],
-              "px);",
+              "px);animation-duration:0.2s;animation-timing-function:ease-out;",
               [Function],
               " ",
               [Function],
@@ -344,13 +344,13 @@ exports[`Headroom should render with values from its state 1`] = `
   position: sticky;
   top: -50px;
   z-index: 1;
-  -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
   -webkit-transform: translateY(0px);
   -ms-transform: translateY(0px);
   transform: translateY(0px);
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
   -webkit-transition: none;
   transition: none;
 }
@@ -382,9 +382,9 @@ exports[`Headroom should render with values from its state 1`] = `
               [Function],
               ";top:",
               [Function],
-              "px;z-index:1;animation-timing-function:ease-out;animation-duration:0.2s;transform:translateY(",
+              "px;z-index:1;transform:translateY(",
               [Function],
-              "px);",
+              "px);animation-duration:0.2s;animation-timing-function:ease-out;",
               [Function],
               " ",
               [Function],
