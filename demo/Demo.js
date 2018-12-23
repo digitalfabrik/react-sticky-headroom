@@ -2,7 +2,7 @@
 
 import ReactDOM from 'react-dom'
 import React from 'react'
-import ReactStickyHeadroom from 'Headroom'
+import ReactStickyHeadroom from '../src/Headroom'
 import styled from 'styled-components'
 import CITIES from './cities'
 
@@ -78,4 +78,7 @@ class Demo extends React.Component<{}, { stickyTop: number }> {
   }
 }
 
-ReactDOM.render(<Demo />, document.getElementById('react-container'))
+const container = document.getElementById('react-container')
+if (container) {
+  ReactDOM.render(<Demo />, container)
+}

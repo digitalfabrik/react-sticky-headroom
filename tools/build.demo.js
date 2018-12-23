@@ -6,8 +6,7 @@ const webpackConfig = {
   mode: 'production',
   resolve: {
     modules: [
-      path.resolve('./node_modules'),
-      path.resolve('./src')
+      path.resolve('./node_modules')
     ]
   },
   context: path.resolve(__dirname, '../demo'),
