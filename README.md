@@ -1,5 +1,5 @@
 # StickyHeadroom
-[![npm badge](https://img.shields.io/npm/v/@integreat-app/react-sticky-headroom.svg)](https://www.npmjs.com/package/@integreat-app/sticky-headroom)
+[![npm badge](https://img.shields.io/npm/v/@integreat-app/react-sticky-headroom.svg)](https://www.npmjs.com/package/@integreat-app/react-sticky-headroom)
 
 ReactStickyHeadroom is a React component, that hides your header when you scroll down and shows it
 once you're scrolling up again.
@@ -46,7 +46,7 @@ The component generally supports:
 * Firefox >= 40
 * Safari >= 6.2
 
-For hiding and revealing the header, the browser needs to support `position: sticky` support.
+For hiding and revealing the header, the browser needs to support the css-property `position: sticky`.
 You can read about the browser support for that on [caniuse.com](https://caniuse.com/#feat=css-sticky).
 'Partial-Support' is enough for StickyHeadroom to work in most cases.
 
