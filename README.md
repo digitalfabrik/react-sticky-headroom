@@ -1,4 +1,4 @@
-# StickyHeadroom
+# ReactStickyHeadroom
 [![npm badge](https://img.shields.io/npm/v/@integreat-app/react-sticky-headroom.svg)](https://www.npmjs.com/package/@integreat-app/react-sticky-headroom)
 
 ReactStickyHeadroom is a React component, that hides your header when you scroll down and shows it
@@ -19,7 +19,7 @@ The component is inspired by [react-headroom](https://kyleamathews.github.io/rea
 A basic usage example:
 ```jsx
 render () {
-  return <StickyHeadroom scrollHeight={100} />
+  return <ReactStickyHeadroom scrollHeight={100} />
     <div style={{height: '100px', backgroundColor: 'red'}}>MyHeader</div>
   </StickyHeadroom>
 }

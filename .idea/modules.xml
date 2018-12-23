@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/sticky-headroom.iml" filepath="$PROJECT_DIR$/.idea/sticky-headroom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/react-sticky-headroom.iml" filepath="$PROJECT_DIR$/.idea/react-sticky-headroom.iml" />
     </modules>
   </component>
 </project>

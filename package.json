@@ -6,7 +6,7 @@
     "npm": ">=3.8"
   },
   "license": "MIT",
-  "description": "A react component for hiding the header when scrolling.",
+  "description": "ReactStickyHeadroom is a React Component for hiding the header when scrolling.",
   "author": "Michael Markl <marklmichael98@gmail.com>",
   "repository": "https://github.com/integreat/react-sticky-headroom",
   "files": [
