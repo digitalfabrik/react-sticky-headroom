@@ -21,7 +21,7 @@ describe('Headroom', () => {
 
   it('should have correct default state', () => {
     const component = createComponent()
-    expect(component.state()).toEqual({ mode: 'static', transition: 'none', keyframes: null })
+    expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
     expect(component.prop('pinStart')).toEqual(0)
   })
 
@@ -79,7 +79,7 @@ describe('Headroom', () => {
       }
       scrollTo(0)
       scrollTo(pinStart / 2)
-      expect(component.state()).toEqual({ mode: 'static', transition: 'none', keyframes: null })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
     })
 
     it('should set correct state, if user has scrolled down to pinStart + scrollHeight/2', () => {
@@ -91,37 +91,37 @@ describe('Headroom', () => {
 
       scrollTo(0)
       scrollTo(pinStart + scrollHeight / 2)
-      expect(component.state()).toEqual({ mode: 'static', transition: 'none', keyframes: null })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
     })
 
     it('should set correct state, if user has scrolled down and back up again', () => {
-      const component = createComponent({ pinStart, height, scrollHeight, keyframes: null })
+      const component = createComponent({ pinStart, height, scrollHeight, animateUpFrom: null })
       const scrollTo = scrollTo => {
         window.pageYOffset = scrollTo
         component.instance().update()
       }
 
       scrollTo(pinStart)
-      expect(component.state()).toEqual({ mode: 'static', transition: 'none', keyframes: null })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
 
       const offset = 5
       scrollTo(pinStart + scrollHeight)
       // Header is completely transformed to the top
-      expect(component.state()).toEqual({ mode: 'static', transition: 'none', keyframes: null })
+      expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
 
       scrollTo(pinStart + scrollHeight + offset)
       // Header should be unpinned now, transitions should be off though
-      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none', keyframes: null })
+      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none', animateUpFrom: null })
 
-      scrollTo(pinStart + scrollHeight)
+      scrollTo(pinStart + offset / 2)
       // Header should be pinned with transition, because we're scrolling upwards
-      expect(component.state()).toEqual({ mode: 'pinned', transition: 'normal', keyframes: null })
+      expect(component.state()).toEqual({ mode: 'pinned', transition: 'normal', animateUpFrom: null })
 
-      scrollTo(pinStart)
-      expect(component.state()).toEqual({ mode: 'static', transition: 'pinned-to-static', keyframes: expect.any(Object) })
+      scrollTo(pinStart + offset)
+      expect(component.state()).toEqual({ mode: 'static', transition: 'pinned-to-static', animateUpFrom: offset })
     })
 
-    it('shouldn\'t update state update is called with same scrollTop', () => {
+    it('shouldn\'t update state if update is called with same scrollTop', () => {
       const component = createComponent({ pinStart, height, scrollHeight })
       const scrollTo = scrollTo => {
         window.pageYOffset = scrollTo
@@ -129,9 +129,9 @@ describe('Headroom', () => {
       }
       const offset = 5
       scrollTo(pinStart + scrollHeight + offset)
-      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none', keyframes: null })
+      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none', animateUpFrom: null })
       scrollTo(pinStart + scrollHeight + offset)
-      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none', keyframes: null })
+      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none', animateUpFrom: null })
     })
 
     it('should call onStickyTopChanged if mode has changed', () => {
