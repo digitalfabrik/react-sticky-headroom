@@ -1,6 +1,6 @@
 {
   "name": "@integreat-app/react-sticky-headroom",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "engines": {
     "node": ">=6.9",
     "npm": ">=3.8"
