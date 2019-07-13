@@ -4,12 +4,12 @@
 ReactStickyHeadroom is a React component, that hides your header when you scroll down and shows it
 once you're scrolling up again.
 It's designed for best performance and can only be used if you know the height of your header
-component (or more precisely the amount of pixels you want StickyHeadroom to hide).
+component (or more precisely the amount of pixels you want ReactStickyHeadroom to hide).
 This helps us avoid calculating the height ourselves and therefore browsers don't need to perform
 heavy Recalculate-Style-Phases.
 For more information read [here](https://developers.google.com/web/fundamentals/performance/rendering/).
 
-Since it's using [styled-components](https://www.styled-components.com/) internally, it's best to 
+Since it's using [styled-components](https://www.styled-components.com/) internally, it's best to
 use it in apps where you already have styled-components in place.
 The component is only compatible with styled-components v4.x.x.
 
@@ -21,7 +21,7 @@ A basic usage example:
 render () {
   return <ReactStickyHeadroom scrollHeight={100} />
     <div style={{height: '100px', backgroundColor: 'red'}}>MyHeader</div>
-  </StickyHeadroom>
+  </ReactStickyHeadroom>
 }
 ```
 
@@ -33,7 +33,7 @@ Go to [https://integreat.github.io/react-sticky-headroom/](https://integreat.git
 
 
 ## API
-You can pass the following props to StickyHeadroom:
+You can pass the following props to ReactStickyHeadroom:
 * `children: React.Node` The header component, that should be hidden and revealed
 * `scrollHeight: number` The maximum amount of px the header should move up when scrolling
 * `pinStart: number` The minimum scrollTop position where the transform should start
@@ -55,6 +55,6 @@ The component generally supports:
 
 For hiding and revealing the header, the browser needs to support the css-property `position: sticky`.
 You can read about the browser support for that on [caniuse.com](https://caniuse.com/#feat=css-sticky).
-'Partial-Support' is enough for StickyHeadroom to work in most cases.
+'Partial-Support' is enough for ReactStickyHeadroom to work in most cases.
 
 If there are any problems, please don't hesitate to open an issue on GitHub.
