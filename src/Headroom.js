@@ -47,11 +47,11 @@ const HeaderWrapper = styled.div`
   transform: translateY(${props => props.translateY}px);
   animation-duration: 0.2s;
   animation-timing-function: ease-out;
-  ${props => props.transition === NORMAL_TRANSITION && !props.static &&
-    `transition: transform 0.2s ease-out;`}
-  ${props => props.transition === PINNED_TO_STATIC && css`
+  ${props => props.transition === NORMAL_TRANSITION && !props.static
+    ? `transition: transform 0.2s ease-out;` : ''}
+  ${props => props.transition === PINNED_TO_STATIC ? css`
     animation-name: ${keyframesMoveUpFrom(props.animateUpFrom)};
-  `}
+  ` : ''}
   ${props => props.static && `transition: none;`}
 `
 
