@@ -52,7 +52,7 @@ const HeaderWrapper = styled.div`
   ${props => props.transition === PINNED_TO_STATIC ? css`
     animation-name: ${keyframesMoveUpFrom(props.animateUpFrom)};
   ` : ''}
-  ${props => props.static && `transition: none;`}
+  ${props => props.static ? `transition: none;` : ''}
 `
 
 const keyframesMoveUpFrom = (from: number) => keyframes`
