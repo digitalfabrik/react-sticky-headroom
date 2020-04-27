@@ -62,7 +62,7 @@ class Demo extends React.Component<{}, { stickyTop: number }> {
           <h5>Submenu is always there for you, so keep on scrolling!</h5>
         </Header>
       </ReactStickyHeadroom>
-      <h2>You can look at the underlying code <a href='https://github.com/Integreat/react-sticky-headroom/tree/master/demo/Demo.js'>here</a>.</h2>
+      <h2>You can look at the underlying code <a href='https://github.com/Integreat/react-sticky-headroom/tree/master/demo/demo.js'>here</a>.</h2>
       <h3>Look at all these cities grouped by their countries:</h3>
       {Object.keys(CITIES).map(key =>
           <div key={key}>
