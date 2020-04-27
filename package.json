@@ -42,7 +42,7 @@
   },
   "peerDependencies": {
     "react": "16.x.x",
-    "styled-components": "4.x.x"
+    "styled-components": "4.x.x || 5.x.x"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
@@ -93,7 +93,7 @@
     "rimraf": "^3.0.2",
     "s3": "^4.4.0",
     "style-loader": "^1.2.0",
-    "styled-components": "^4.3.2",
+    "styled-components": "^5.1.0",
     "stylefmt": "^6.0.3",
     "stylelint": "^13.3.3",
     "stylelint-config-styled-components": "^0.1.1",
