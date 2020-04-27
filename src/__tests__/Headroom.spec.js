@@ -95,7 +95,7 @@ describe('Headroom', () => {
     })
 
     it('should set correct state, if user has scrolled down and back up again', () => {
-      const component = createComponent({ pinStart, height, scrollHeight, animateUpFrom: null })
+      const component = createComponent({ pinStart, height, scrollHeight })
       const scrollTo = scrollTo => {
         window.pageYOffset = scrollTo
         component.instance().update()

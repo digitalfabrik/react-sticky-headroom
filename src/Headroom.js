@@ -48,11 +48,11 @@ const HeaderWrapper = styled.div`
   animation-duration: 0.2s;
   animation-timing-function: ease-out;
   ${props => props.transition === NORMAL_TRANSITION && !props.static
-    ? `transition: transform 0.2s ease-out;` : ''}
+    ? 'transition: transform 0.2s ease-out;' : ''}
   ${props => props.transition === PINNED_TO_STATIC ? css`
     animation-name: ${keyframesMoveUpFrom(props.animateUpFrom)};
   ` : ''}
-  ${props => props.static ? `transition: none;` : ''}
+  ${props => props.static ? 'transition: none;' : ''}
 `
 
 const keyframesMoveUpFrom = (from: number) => keyframes`
@@ -200,17 +200,17 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     const transform = mode === UNPINNED ? -scrollHeight : 0
     const ownStickyTop = mode === STATIC ? -scrollHeight : 0
     return (
-        <>
-          <HeaderWrapper
-              translateY={transform}
-              top={ownStickyTop}
-              transition={transition}
-              positionStickyDisabled={positionStickyDisabled}
-              static={mode === STATIC}
-              animateUpFrom={animateUpFrom}>
-            {children}
-          </HeaderWrapper>
-        </>
+      <>
+        <HeaderWrapper
+            translateY={transform}
+            top={ownStickyTop}
+            transition={transition}
+            positionStickyDisabled={positionStickyDisabled}
+            static={mode === STATIC}
+            animateUpFrom={animateUpFrom}>
+          {children}
+        </HeaderWrapper>
+      </>
     )
   }
 }
