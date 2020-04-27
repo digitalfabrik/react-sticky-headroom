@@ -1,20 +1,23 @@
-// flow-typed signature: ddbbc20af6521fcadfe6b222df027838
-// flow-typed version: 9818728193/webpack_v4.x.x/flow_>=v0.71.x
+// flow-typed signature: 5de44ba0d9d6f5a48ca71345151a9801
+// flow-typed version: 7448070196/webpack_v4.x.x/flow_>=v0.71.x <=v0.103.x
 
 import * as http from 'http';
 import fs from 'fs';
 
 declare module 'webpack' {
-  declare class WebpackError extends Error {
+  declare class $WebpackError extends Error {
     constructor(message: string): WebpackError;
     inspect(): string;
+    details: string;
   }
+
+  declare type WebpackError = $WebpackError;
 
   declare interface Stats {
     hasErrors(): boolean;
     hasWarnings(): boolean;
     toJson(options?: StatsOptions): any;
-    toString(options?: StatsOptions & { colors?: boolean }): string;
+    toString(options?: { ...StatsOptions, colors?: boolean }): string;
   }
 
   declare type Callback = (error: WebpackError, stats: Stats) => void;

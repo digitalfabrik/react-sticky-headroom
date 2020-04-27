@@ -1,5 +1,5 @@
-// flow-typed signature: f6bad512110ebc6da85b1ddda297fe3d
-// flow-typed version: f04d291d8b/enzyme_v3.x.x/flow_>=v0.53.x
+// flow-typed signature: 4f69d3f40aef5384a6b680ea0d1bae2f
+// flow-typed version: 5175c53189/enzyme_v3.x.x/flow_>=v0.53.x <=v0.103.x
 
 declare module "enzyme" {
   declare type PredicateFunction<T: Wrapper<*>> = (
@@ -47,6 +47,7 @@ declare module "enzyme" {
     unmount(): this,
     text(): string,
     html(): string,
+    invoke(propName: string): (...args: $ReadOnlyArray<any>) => mixed,
     get(index: number): React$Node,
     getDOMNode(): HTMLElement | HTMLInputElement,
     at(index: number): this,
