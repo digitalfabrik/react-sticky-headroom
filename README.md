@@ -29,7 +29,7 @@ render () {
 
 Go to [https://integreat.github.io/react-sticky-headroom/](https://integreat.github.io/react-sticky-headroom/) to view a demo:
 
-[![demo gif](demo.gif)](https://www.npmjs.com/package/@integreat-app/react-sticky-headroom)
+[![https://raw.githubusercontent.com/Integreat/react-sticky-headroom/master/demo.gif](demo.gif)](https://www.npmjs.com/package/@integreat-app/react-sticky-headroom)
 
 
 ## API
