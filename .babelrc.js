@@ -1,4 +1,3 @@
-const useHMR = !!global.HMR // HotModuleReplacement
 const config = {
   presets: [
     '@babel/preset-env',
@@ -18,12 +17,6 @@ const config = {
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-export-namespace-from'
   ]
-}
-
-if (useHMR) {
-  config.babelrc = false
-  config.cacheDirectory = useHMR
-  config.plugins.unshift('react-hot-loader/babel')
 }
 
 module.exports = config
