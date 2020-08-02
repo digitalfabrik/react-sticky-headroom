@@ -1,0 +1,30 @@
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - run:
+          command: yarn
+      - run:
+          command: yarn run flow
+      - run:
+          command: yarn run lint
+      - run:
+          command: yarn run test --ci
+      - run:
+          command: yarn run test:coverage --ci
+  build:
+    docker:
+      - image: cimg/base
+    steps:
+      - run:
+          command: yarn run build
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test
