@@ -1,11 +1,24 @@
 version: 2.1
 jobs:
-  test:
+  test-and-build:
     docker:
       - image: circleci/node:lts
     steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - 0-yarn-{{ arch }}-{{ checksum "yarn.lock" }}
+            - 0-yarn-{{ arch }}-
       - run:
-          command: yarn
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: 0-yarn-{{ arch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - node_modules
       - run:
           command: yarn run flow
       - run:
@@ -14,17 +27,11 @@ jobs:
           command: yarn run test --ci
       - run:
           command: yarn run test:coverage --ci
-  build:
-    docker:
-      - image: cimg/base
-    steps:
       - run:
           command: yarn run build
+
 workflows:
   version: 2
   build-and-test:
     jobs:
-      - test
-      - build:
-          requires:
-            - test
+      - test-and-build
