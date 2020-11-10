@@ -19,7 +19,7 @@ The component is inspired by [react-headroom](https://kyleamathews.github.io/rea
 A basic usage example:
 ```jsx
 render () {
-  return <ReactStickyHeadroom scrollHeight={100} />
+  return <ReactStickyHeadroom scrollHeight={100}>
     <div style={{height: '100px', backgroundColor: 'red'}}>MyHeader</div>
   </ReactStickyHeadroom>
 }
