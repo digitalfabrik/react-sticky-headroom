@@ -92,7 +92,6 @@
     "react-dom": "^16.13.1",
     "rimraf": "^3.0.2",
     "s3": "^4.4.0",
-    "style-loader": "^1.2.0",
     "styled-components": "^5.1.0",
     "stylefmt": "^6.0.3",
     "stylelint": "^13.3.3",
