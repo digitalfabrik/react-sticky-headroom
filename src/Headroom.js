@@ -3,6 +3,7 @@
 import type { Node } from 'react'
 import * as React from 'react'
 import styled, { keyframes, css } from 'styled-components'
+import type { StyledComponent } from 'styled-components'
 
 const UPWARDS = 'up'
 const DOWNWARDS = 'down'
@@ -40,7 +41,12 @@ type StateType = {|
   animateUpFrom: ?number
 |}
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper: StyledComponent<{|
+  positionStickyDisabled: boolean,
+  translateY: number,
+  transition: TransitionType,
+  animateUpFrom: ?number
+|}, *, *, *> = styled.div`
   position: ${props => props.positionStickyDisabled ? 'static' : 'sticky'};
   top: ${props => props.top}px;
   z-index: 1;
@@ -199,9 +205,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     const { mode, transition, animateUpFrom } = this.state
     const transform = mode === UNPINNED ? -scrollHeight : 0
     const ownStickyTop = mode === STATIC ? -scrollHeight : 0
-    return (
-      <>
-        <HeaderWrapper
+    return <HeaderWrapper
             translateY={transform}
             top={ownStickyTop}
             transition={transition}
@@ -209,9 +213,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
             static={mode === STATIC}
             animateUpFrom={animateUpFrom}>
           {children}
-        </HeaderWrapper>
-      </>
-    )
+      </HeaderWrapper>
   }
 }
 
