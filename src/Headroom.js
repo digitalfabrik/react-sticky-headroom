@@ -72,14 +72,14 @@ const keyframesMoveUpFrom = (from: number) => keyframes`
   `
 
 class Headroom extends React.PureComponent<PropsType, StateType> {
-  static defaultProps = {
+  static defaultProps: {| pinStart: number |} = {
     pinStart: 0
   }
 
-  state = { mode: STATIC, transition: NO_TRANSITION, animateUpFrom: null }
+  state: StateType = { mode: STATIC, transition: NO_TRANSITION, animateUpFrom: null }
 
   /** the very last scrollTop which we know about (to determine direction changes) */
-  lastKnownScrollTop = 0
+  lastKnownScrollTop: number = 0
 
   /**
    * @returns {number} the current scrollTop position of the window
@@ -161,7 +161,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
   /**
    * Checks the current scrollTop position and updates the state accordingly
    */
-  update = () => {
+  update: () => void = () => {
     const currentScrollTop = Headroom.getScrollTop()
     const newState = {}
     if (currentScrollTop === this.lastKnownScrollTop) {
@@ -184,7 +184,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     this.lastKnownScrollTop = currentScrollTop
   }
 
-  handleEvent = () => {
+  handleEvent: () => void = () => {
     window.requestAnimationFrame(this.update)
   }
 
@@ -196,7 +196,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     return mode === PINNED ? height : height - scrollHeight
   }
 
-  render () {
+  render (): * {
     const {
       children,
       scrollHeight,
