@@ -41,7 +41,7 @@
     "prepublishOnly": "yarn build && yarn build:demo && yarn test && yarn lint && yarn flow:check-now"
   },
   "peerDependencies": {
-    "react": "16.x.x",
+    "react": "16.x.x || 17.x.x",
     "styled-components": "4.x.x || 5.x.x"
   },
   "devDependencies": {
@@ -86,10 +86,9 @@
     "jest": "^26.6.3",
     "jest-junit": "^12.0.0",
     "jest-styled-components": "^7.0.3",
-    "json-loader": "^0.5.7",
     "raf": "^3.4.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "rimraf": "^3.0.2",
     "s3": "^4.4.0",
     "styled-components": "^5.1.0",
