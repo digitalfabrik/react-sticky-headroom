@@ -33,7 +33,7 @@ type PropsType = {|
   onStickyTopChanged?: (number) => void,
   /** True, if sticky position should be disabled (e.g. for edge 16 support) */
   positionStickyDisabled?: boolean,
-  /** Resolver for the parent element firing the scroll event. Defaults to a body resolver */
+  /** The parent element firing the scroll event. Defaults to document.documentElement */
   parent: ?HTMLElement,
   /** The z-index used by the wrapper. Defaults to 1. */
   zIndex?: number,

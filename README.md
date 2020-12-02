@@ -19,9 +19,9 @@ The component is inspired by [react-headroom](https://kyleamathews.github.io/rea
 A basic usage example:
 ```jsx
 render () {
-  return <ReactStickyHeadroom scrollHeight={100}>
+  return <StickyHeadroom scrollHeight={100}>
     <div style={{height: '100px', backgroundColor: 'red'}}>MyHeader</div>
-  </ReactStickyHeadroom>
+  </StickyHeadroom>
 }
 ```
 
@@ -40,6 +40,10 @@ You can pass the following props to ReactStickyHeadroom:
 * `height?: number` (Optional) The height of the `children` node. Used for calculating the stickyTop position for a sticky ancestor in `onStickyTopChanged`
 * `onStickyTopChanged?: (number) => void` Fired, when Headroom changes its state and `height` is provided. Passes the calculated stickyTop position of an ancestor node.
 * `positionStickyDisabled?: boolean` (Optional, Default: `false`) If true, the header will stay static (e.g. for edge 16 support)
+* `parent: ?HTMLElement` (Optional, Default: `document.documentElement`) The parent element firing the scroll event.
+* `zIndex: number` (Optional, Default: 1) The z-index used by the wrapper.
+* `className?: string` (Optional) A classname for applying custom styles to the wrapper. Use at your own risk.
+
 
 Edge 16 has had issues with css property `position: sticky` together with `direction: rtl`.
 This has been fixed in Edge 17.
