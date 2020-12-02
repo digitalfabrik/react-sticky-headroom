@@ -32,7 +32,11 @@ type PropsType = {|
   /** Fired, when Headroom changes its state. Passes stickyTop of the ancestor. */
   onStickyTopChanged?: (number) => void,
   /** True, if sticky position should be disabled (e.g. for edge 16 support) */
-  positionStickyDisabled?: boolean
+  positionStickyDisabled?: boolean,
+  /** The z-index used by the wrapper. Defaults to 1. */
+  zIndex?: number,
+  /** A classname for applying custom styles to the wrapper. Use at your own risk. */
+  className?: string
 |}
 
 type StateType = {|
@@ -45,11 +49,12 @@ const HeaderWrapper: StyledComponent<{|
   positionStickyDisabled: boolean,
   translateY: number,
   transition: TransitionType,
-  animateUpFrom: ?number
+  animateUpFrom: ?number,
+  zIndex: number
 |}, *, *, *> = styled.div`
   position: ${props => props.positionStickyDisabled ? 'static' : 'sticky'};
   top: ${props => props.top}px;
-  z-index: 1;
+  z-index: ${props => props.zIndex};
   transform: translateY(${props => props.translateY}px);
   animation-duration: 0.2s;
   animation-timing-function: ease-out;
@@ -73,7 +78,8 @@ const keyframesMoveUpFrom = (from: number) => keyframes`
 
 class Headroom extends React.PureComponent<PropsType, StateType> {
   static defaultProps: {| pinStart: number |} = {
-    pinStart: 0
+    pinStart: 0,
+    zIndex: 1
   }
 
   state: StateType = { mode: STATIC, transition: NO_TRANSITION, animateUpFrom: null }
@@ -200,18 +206,22 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     const {
       children,
       scrollHeight,
-      positionStickyDisabled
+      positionStickyDisabled,
+      zIndex,
+      className
     } = this.props
     const { mode, transition, animateUpFrom } = this.state
     const transform = mode === UNPINNED ? -scrollHeight : 0
     const ownStickyTop = mode === STATIC ? -scrollHeight : 0
     return <HeaderWrapper
+            className={className}
             translateY={transform}
             top={ownStickyTop}
             transition={transition}
             positionStickyDisabled={positionStickyDisabled}
             static={mode === STATIC}
-            animateUpFrom={animateUpFrom}>
+            animateUpFrom={animateUpFrom}
+            zIndex={zIndex}>
           {children}
       </HeaderWrapper>
   }
