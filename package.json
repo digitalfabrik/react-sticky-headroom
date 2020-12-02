@@ -33,9 +33,9 @@
     "test:watch": "jest --config jest.config.json --watchAll",
     "test:update": "jest --config jest.config.json -u",
     "lint": "yarn run eslint && yarn run stylelint",
-    "lint:fix": "yarn run eslint --fix && stylefmt -r \"src/**/*.{js,css}\"",
+    "lint:fix": "yarn run eslint --fix && yarn run stylelint",
     "eslint": "eslint .",
-    "stylelint": "stylelint --config stylelint.config.js \"src/**/*.{js,css}\"",
+    "stylelint": "stylelint './src/**/*.js'",
     "flow:check-now": "flow check",
     "flow:install-types": "flow-typed install --skip",
     "prepublishOnly": "yarn build && yarn build:demo && yarn test && yarn lint && yarn flow:check-now"
@@ -93,10 +93,9 @@
     "rimraf": "^3.0.2",
     "s3": "^4.4.0",
     "styled-components": "^5.1.0",
-    "stylefmt": "^6.0.3",
-    "stylelint": "^13.3.3",
+    "stylelint": "^13.8.0",
+    "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-order": "^4.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "webpack": "^5.9.0"
   }
