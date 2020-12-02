@@ -79,7 +79,7 @@ const keyframesMoveUpFrom = (from: number) => keyframes`
   `
 
 class Headroom extends React.PureComponent<PropsType, StateType> {
-  static defaultProps: {| pinStart: number, zIndex: number |} = {
+  static defaultProps: {| pinStart: number, zIndex: number, parent: ?HTMLElement |} = {
     pinStart: 0,
     zIndex: 1,
     parent: window.document.documentElement
