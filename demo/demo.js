@@ -60,7 +60,6 @@ class Demo extends React.Component<{}, { stickyTop: number, secondStickyTop: num
 
   render () {
     const { stickyTop, secondStickyTop } = this.state
-    console.log(this.state)
     return <>
       <PreHeader>
         <h3>Small Preheader</h3>
