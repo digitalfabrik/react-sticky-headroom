@@ -41,15 +41,25 @@ const City = styled.div`
   padding: 5px 20px;
 `
 
-class Demo extends React.Component<{}, { stickyTop: number }> {
-  state = { stickyTop: 0 }
+class Demo extends React.Component<{}, { stickyTop: number, secondStickyTop: number }> {
+  state = {
+    stickyTop: 0,
+    secondStickyTop: 0
+  }
+
+  secondScroller = React.createRef()
+  resolveSecondScroller = () => this.secondScroller.current
 
   onStickyTopChanged = (stickyTop: number) => {
     this.setState({ stickyTop })
   }
 
+  onSecondStickyTopChanged = (secondStickyTop: number) => {
+    this.setState({ secondStickyTop })
+  }
+
   render () {
-    const stickyTop = this.state.stickyTop
+    const { stickyTop, secondStickyTop } = this.state
     return <>
       <PreHeader>
         <h3>Small Preheader</h3>
@@ -76,6 +86,28 @@ class Demo extends React.Component<{}, { stickyTop: number }> {
           {CITIES[key].map(city => <City key={city}>{city}</City>)}
         </div>
       )}
+
+      <div style={{ height: '600px', overflowY: 'scroll', border: '2px solid red' }} ref={this.secondScroller}>
+        <PreHeader>
+          <h3>Small Preheader</h3>
+          <p>This is a demo for StickyHeadroom in a second scrolling box!</p>
+        </PreHeader>
+        <StickyHeadroom onStickyTopChanged={this.onSecondStickyTopChanged} scrollHeight={50} pinStart={150}
+                        parent={this.secondScroller.current} height={100}>
+          <Header>
+            <h2>ReactStickyHeadroom</h2>
+            <h5>Second submenu is always visible in the box, so keep on scrolling!</h5>
+          </Header>
+        </StickyHeadroom>
+        {Object.keys(CITIES).map(key =>
+          <div key={key}>
+            <Country stickyTop={secondStickyTop}>
+              {key}
+            </Country>
+            {CITIES[key].map(city => <City key={city}>{city}</City>)}
+          </div>
+        )}
+      </div>
     </>
   }
 }
