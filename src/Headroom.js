@@ -3,6 +3,7 @@
 import type { Node } from 'react'
 import * as React from 'react'
 import styled, { keyframes, css } from 'styled-components'
+import type { StyledComponent } from 'styled-components'
 
 const UPWARDS = 'up'
 const DOWNWARDS = 'down'
@@ -40,7 +41,12 @@ type StateType = {|
   animateUpFrom: ?number
 |}
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper: StyledComponent<{|
+  positionStickyDisabled: boolean,
+  translateY: number,
+  transition: TransitionType,
+  animateUpFrom: ?number
+|}, *, *, *> = styled.div`
   position: ${props => props.positionStickyDisabled ? 'static' : 'sticky'};
   top: ${props => props.top}px;
   z-index: 1;
@@ -66,14 +72,14 @@ const keyframesMoveUpFrom = (from: number) => keyframes`
   `
 
 class Headroom extends React.PureComponent<PropsType, StateType> {
-  static defaultProps = {
+  static defaultProps: {| pinStart: number |} = {
     pinStart: 0
   }
 
-  state = { mode: STATIC, transition: NO_TRANSITION, animateUpFrom: null }
+  state: StateType = { mode: STATIC, transition: NO_TRANSITION, animateUpFrom: null }
 
   /** the very last scrollTop which we know about (to determine direction changes) */
-  lastKnownScrollTop = 0
+  lastKnownScrollTop: number = 0
 
   /**
    * @returns {number} the current scrollTop position of the window
@@ -155,7 +161,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
   /**
    * Checks the current scrollTop position and updates the state accordingly
    */
-  update = () => {
+  update: () => void = () => {
     const currentScrollTop = Headroom.getScrollTop()
     const newState = {}
     if (currentScrollTop === this.lastKnownScrollTop) {
@@ -178,7 +184,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     this.lastKnownScrollTop = currentScrollTop
   }
 
-  handleEvent = () => {
+  handleEvent: () => void = () => {
     window.requestAnimationFrame(this.update)
   }
 
@@ -190,7 +196,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     return mode === PINNED ? height : height - scrollHeight
   }
 
-  render () {
+  render (): * {
     const {
       children,
       scrollHeight,
@@ -199,9 +205,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     const { mode, transition, animateUpFrom } = this.state
     const transform = mode === UNPINNED ? -scrollHeight : 0
     const ownStickyTop = mode === STATIC ? -scrollHeight : 0
-    return (
-      <>
-        <HeaderWrapper
+    return <HeaderWrapper
             translateY={transform}
             top={ownStickyTop}
             transition={transition}
@@ -209,9 +213,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
             static={mode === STATIC}
             animateUpFrom={animateUpFrom}>
           {children}
-        </HeaderWrapper>
-      </>
-    )
+      </HeaderWrapper>
   }
 }
 
