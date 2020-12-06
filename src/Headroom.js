@@ -95,10 +95,12 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
    */
   getScrollTop (): number {
     const parent = this.props.parent
-    if (parent && parent.scrollTop !== undefined) {
+    if (parent && parent.scrollTop !== undefined && parent !== document.documentElement) {
       return parent.scrollTop
     }
-    console.warn('Could not find parent for StickyHeadroom. Defaulting to window, html or body.')
+    if (parent !== document.documentElement) {
+      console.warn('Could not find parent for StickyHeadroom. Defaulting to window, documentElement or body.')
+    }
     if (window.pageYOffset !== undefined) {
       return window.pageYOffset
     } else if (window.scrollTop !== undefined) {

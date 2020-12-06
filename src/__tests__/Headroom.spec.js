@@ -74,7 +74,7 @@ describe('Headroom', () => {
 
   describe('update', () => {
     const scrollTo = (scrollTo, component) => {
-      window.document.documentElement.scrollTop = scrollTo
+      window.pageYOffset = scrollTo
       component.instance().update()
     }
     it('should set correct state, if user hasn\'t scrolled beyond pinStart', () => {
