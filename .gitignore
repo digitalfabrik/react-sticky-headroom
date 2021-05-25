@@ -2,6 +2,7 @@
 ### Project specific stuff
 index.js
 index.js.flow
+index.d.ts
 junit.xml
 __coverage__
 

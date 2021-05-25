@@ -3,4 +3,6 @@ __coverage__
 /node_modules/
 index.js
 index.js.flow
+index.d.ts
+src/Headroom.d.ts
 /docs
