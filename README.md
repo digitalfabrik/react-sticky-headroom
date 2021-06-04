@@ -45,10 +45,6 @@ You can pass the following props to ReactStickyHeadroom:
 * `className?: string` (Optional) A classname for applying custom styles to the wrapper. Use at your own risk.
 
 
-Edge 16 has had issues with css property `position: sticky` together with `direction: rtl`.
-This has been fixed in Edge 17.
-If you need Edge 16 as well as right-to-left support, you should use `positionStickyDisabled: true`, when detecting Edge 16.
-
 ## Support
 The component generally supports:
 * Internet Explorer 11
