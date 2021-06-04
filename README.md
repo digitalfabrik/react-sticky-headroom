@@ -36,7 +36,7 @@ Go to [https://integreat.github.io/react-sticky-headroom/](https://integreat.git
 You can pass the following props to ReactStickyHeadroom:
 * `children: React.Node` The header component, that should be hidden and revealed
 * `scrollHeight: number` The maximum amount of px the header should move up when scrolling
-* `pinStart: number` The minimum scrollTop position where the transform should start
+* `pinStart: number` (Default: `0`) The minimum scrollTop position where the transform should start
 * `height?: number` (Optional) The height of the `children` node. Used for calculating the stickyTop position for a sticky ancestor in `onStickyTopChanged`
 * `onStickyTopChanged?: (number) => void` Fired, when Headroom changes its state and `height` is provided. Passes the calculated stickyTop position of an ancestor node.
 * `positionStickyDisabled?: boolean` (Optional, Default: `false`) If true, the header will stay static (e.g. for edge 16 support)

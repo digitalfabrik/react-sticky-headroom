@@ -3,7 +3,7 @@ import * as React from 'react'
 declare type PropsType = {
     children: Node,
     scrollHeight: number,
-    pinStart: number,
+    pinStart?: number,
     height?: number,
     onStickyTopChanged?: (number) => void,
     positionStickyDisabled?: boolean,
