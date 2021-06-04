@@ -1,7 +1,7 @@
-import * as React from 'react'
+import React, { ReactNode } from 'react'
 
 declare type PropsType = {
-    children: Node,
+    children: ReactNode,
     scrollHeight: number,
     pinStart?: number,
     height?: number,
