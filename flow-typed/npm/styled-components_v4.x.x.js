@@ -1,5 +1,5 @@
-// flow-typed signature: c17015ec421be0534f16a612e1354d1f
-// flow-typed version: 52fe4a44bf/styled-components_v4.x.x/flow_>=v0.104.x
+// flow-typed signature: 8fc2b5bb7a7929f4ddd19c9e55221f97
+// flow-typed version: 145462e58a/styled-components_v4.x.x/flow_>=v0.134.x
 
 // @flow
 

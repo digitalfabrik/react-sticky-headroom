@@ -182,8 +182,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
   /**
    * @returns {TransitionType} determines the kind of transition
    */
-  determineTransition (mode: ModeType,
-    direction: DirectionType): TransitionType {
+  determineTransition (mode: ModeType, direction: DirectionType): TransitionType {
     // Handle special case: If we're pinned and going to static, we need a special transition using css animation
     if (this.state.mode === PINNED && mode === STATIC) {
       return PINNED_TO_STATIC

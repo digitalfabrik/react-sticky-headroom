@@ -2,6 +2,7 @@
   "rootDir": "src/",
   "verbose": true,
   "automock": false,
+  "testEnvironment": "jsdom",
   "setupFiles": [
     "<rootDir>/setupTest.js"
   ],
