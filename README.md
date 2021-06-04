@@ -61,4 +61,6 @@ For hiding and revealing the header, the browser needs to support the css-proper
 You can read about the browser support for that on [caniuse.com](https://caniuse.com/#feat=css-sticky).
 'Partial-Support' is enough for ReactStickyHeadroom to work in most cases.
 
+ReactStickyHeadroom offers types for both TypeScript and FlowJS which should work out of the box.
+
 If there are any problems, please don't hesitate to open an issue on GitHub.

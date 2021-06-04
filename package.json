@@ -29,7 +29,9 @@
     "react",
     "hide",
     "header",
-    "styled-components"
+    "styled-components",
+    "typescript",
+    "flow"
   ],
   "module": "index.js",
   "scripts": {
@@ -103,5 +105,6 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0",
     "webpack": "^5.9.0"
-  }
+  },
+  "dependencies": {}
 }
