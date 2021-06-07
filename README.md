@@ -36,7 +36,7 @@ Go to [https://integreat.github.io/react-sticky-headroom/](https://integreat.git
 You can pass the following props to ReactStickyHeadroom:
 * `children: React.Node` The header component, that should be hidden and revealed
 * `scrollHeight: number` The maximum amount of px the header should move up when scrolling
-* `pinStart: number` The minimum scrollTop position where the transform should start
+* `pinStart: number` (Default: `0`) The minimum scrollTop position where the transform should start
 * `height?: number` (Optional) The height of the `children` node. Used for calculating the stickyTop position for a sticky ancestor in `onStickyTopChanged`
 * `onStickyTopChanged?: (number) => void` Fired, when Headroom changes its state and `height` is provided. Passes the calculated stickyTop position of an ancestor node.
 * `positionStickyDisabled?: boolean` (Optional, Default: `false`) If true, the header will stay static (e.g. for edge 16 support)
@@ -44,10 +44,6 @@ You can pass the following props to ReactStickyHeadroom:
 * `zIndex: number` (Optional, Default: 1) The z-index used by the wrapper.
 * `className?: string` (Optional) A classname for applying custom styles to the wrapper. Use at your own risk.
 
-
-Edge 16 has had issues with css property `position: sticky` together with `direction: rtl`.
-This has been fixed in Edge 17.
-If you need Edge 16 as well as right-to-left support, you should use `positionStickyDisabled: true`, when detecting Edge 16.
 
 ## Support
 The component generally supports:
@@ -60,5 +56,7 @@ The component generally supports:
 For hiding and revealing the header, the browser needs to support the css-property `position: sticky`.
 You can read about the browser support for that on [caniuse.com](https://caniuse.com/#feat=css-sticky).
 'Partial-Support' is enough for ReactStickyHeadroom to work in most cases.
+
+ReactStickyHeadroom offers types for both TypeScript and FlowJS which should work out of the box.
 
 If there are any problems, please don't hesitate to open an issue on GitHub.
