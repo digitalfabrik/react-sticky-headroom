@@ -18,7 +18,8 @@
   "repository": "https://github.com/integreat/react-sticky-headroom",
   "files": [
     "index.js",
-    "index.js.flow"
+    "index.js.flow",
+    "index.d.ts"
   ],
   "publishConfig": {
     "access": "public"
