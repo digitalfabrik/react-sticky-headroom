@@ -89,7 +89,7 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
     "eslint": "^7.32.0",
-    "flow-bin": "~0.152.0",
+    "flow-bin": "~0.160.2",
     "flow-copy-source": "^2.0.9",
     "flow-typed": "^3.3.1",
     "jest": "^27.2.2",
