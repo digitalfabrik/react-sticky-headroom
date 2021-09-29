@@ -20,7 +20,7 @@ type ModeType = 'pinned' | 'unpinned' | 'static'
 type DirectionType = 'up' | 'down'
 type TransitionType = 'none' | 'normal' | 'pinned-to-static'
 
-type PropsType = {|
+type PropsType = $ReadOnly<{|
   /** The child node to be displayed as a header */
   children: Node,
   /** The maximum amount of px the header should move up when scrolling */
@@ -39,13 +39,13 @@ type PropsType = {|
   zIndex?: number,
   /** A classname for applying custom styles to the wrapper. Use at your own risk. */
   className?: string
-|}
+|}>
 
-type StateType = {|
+type StateType = $ReadOnly<{|
   mode: ModeType,
   transition: TransitionType,
   animateUpFrom: ?number
-|}
+|}>
 
 const HeaderWrapper: StyledComponent<{|
   positionStickyDisabled: boolean,
