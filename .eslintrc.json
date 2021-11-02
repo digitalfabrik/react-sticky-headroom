@@ -1,5 +1,22 @@
 {
+  "parser": "@babel/eslint-parser",
   "extends": [
-    "@integreat-app/eslint-config-node"
-  ]
+    "standard",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended",
+    "plugin:flowtype/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": [
+    "flowtype"
+  ],
+  "env": {
+    "node": true,
+    "browser": true
+  }
 }
