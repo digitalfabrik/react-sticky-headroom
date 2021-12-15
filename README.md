@@ -27,9 +27,9 @@ render () {
 
 ## Demo
 
-Go to [https://integreat.github.io/react-sticky-headroom/](https://integreat.github.io/react-sticky-headroom/) to view a demo:
+Go to [https://digitalfabrik.github.io/react-sticky-headroom/](https://digitalfabrik.github.io/react-sticky-headroom/) to view a demo:
 
-[![Demo](https://raw.githubusercontent.com/Integreat/react-sticky-headroom/main/demo.gif)](https://integreat.github.io/react-sticky-headroom/)
+[![Demo](https://raw.githubusercontent.com/digitalfabrik/react-sticky-headroom/main/demo.gif)](https://digitalfabrik.github.io/react-sticky-headroom/)
 
 
 ## API
