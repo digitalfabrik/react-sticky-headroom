@@ -1,5 +1,5 @@
-// flow-typed signature: 95d8f53ba64c3048c18517b2c631d593
-// flow-typed version: 25001cfe9c/webpack_v5.x.x/flow_>=v0.104.x
+// flow-typed signature: 495de4e88070a3010e8f3a34269cb5dc
+// flow-typed version: d55f290df6/webpack_v5.x.x/flow_>=v0.104.x
 
 declare module 'webpack' {
   import typeof { Server } from 'http';
@@ -242,7 +242,7 @@ declare module 'webpack' {
 
   declare type OptimizationOptions = {
     checkWasmTypes?: boolean,
-    chunkIds?: 'natural' | 'named' | 'size' | 'total-size' | false,
+    chunkIds?: 'natural' | 'named' | 'deterministic' | 'size' | 'total-size' | false,
     concatenateModules?: boolean,
     flagIncludedChunks?: boolean,
     hashedModuleIds?: boolean,
@@ -250,7 +250,7 @@ declare module 'webpack' {
     mergeDuplicateChunks?: boolean,
     minimize?: boolean,
     minimizer?: Array<WebpackPluginInstance | WebpackPluginFunction>,
-    moduleIds?: 'natural' | 'named' | 'hashed' | 'size' | 'total-size' | false,
+    moduleIds?: 'natural' | 'named' | 'hashed' | 'deterministic' | 'size' | false,
     namedChunks?: boolean,
     namedModules?: boolean,
     noEmitOnErrors?: boolean,
