@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 5
+  version: 6
   cacheKey: 8
 
 "@ampproject/remapping@npm:^2.1.0":
@@ -3053,7 +3053,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.7.0":
+"acorn@npm:^8.5.0, acorn@npm:^8.7.0":
   version: 8.7.0
   resolution: "acorn@npm:8.7.0"
   bin:
@@ -9829,11 +9829,11 @@ __metadata:
 
 "typescript@patch:typescript@^4.0.2#~builtin<compat/typescript>":
   version: 4.3.2
-  resolution: "typescript@patch:typescript@npm%3A4.3.2#~builtin<compat/typescript>::version=4.3.2&hash=ddd1e8"
+  resolution: "typescript@patch:typescript@npm%3A4.3.2#~builtin<compat/typescript>::version=4.3.2&hash=bda367"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 7ede84257208120b3e6bf5b7f512c1d173f49264e34388f1deb4b9a9cf67439aad7008cc1a3480ab048523ecd4f1974a95fbab638f44216478a625c768954c2a
+  checksum: 67da730521568e0de52b13926ad714288a1a6f265b3563c0e646731e6676454bad78bea9e29eafeeb922987e09df9c52d22fabbcddd225dc88783d3610df5209
   languageName: node
   linkType: hard
 
