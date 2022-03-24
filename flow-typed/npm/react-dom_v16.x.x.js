@@ -1,4 +1,4 @@
-// flow-typed signature: a39f42f172876eba767e8d47cd282535
+// flow-typed signature: 5a85d8f7f574f343305a0cd3441ebe34
 // flow-typed version: ad3adf2de8/react-dom_v16.x.x/flow_>=v0.117.x
 
 declare module 'react-dom' {

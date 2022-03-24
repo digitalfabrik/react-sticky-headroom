@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   test-and-build:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     steps:
       - checkout
       - restore_cache:
@@ -12,7 +12,7 @@ jobs:
             - 0-yarn-{{ arch }}-
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn install --immutable
       - save_cache:
           name: Save Yarn Package Cache
           key: 0-yarn-{{ arch }}-{{ checksum "yarn.lock" }}
