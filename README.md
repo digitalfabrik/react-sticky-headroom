@@ -59,4 +59,7 @@ You can read about the browser support for that on [caniuse.com](https://caniuse
 
 ReactStickyHeadroom offers types for both TypeScript and FlowJS which should work out of the box.
 
+ReactStickyHeadroom is a client-side library and hence does not support Server Side Rendering (SSR) a priori.
+For NextJS you can find more information on how to embed this library [here](https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr).
+
 If there are any problems, please don't hesitate to open an issue on GitHub.
