@@ -6,29 +6,28 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
+          name: Restore NPM Package Cache
           keys:
-            - 0-yarn-{{ arch }}-{{ checksum "yarn.lock" }}
-            - 0-yarn-{{ arch }}-
+            - 0-npm-{{ arch }}-{{ checksum "package-lock.json" }}
+            - 0-npm-{{ arch }}-
       - run:
           name: Install Dependencies
-          command: yarn install --immutable
+          command: npm ci
       - save_cache:
-          name: Save Yarn Package Cache
-          key: 0-yarn-{{ arch }}-{{ checksum "yarn.lock" }}
+          name: Save NPM Package Cache
+          key: 0-npm-{{ arch }}-{{ checksum "package-lock.json" }}
           paths:
-            - ~/.cache/yarn
             - node_modules
       - run:
-          command: yarn run flow
+          command: npm run flow
       - run:
-          command: yarn run lint
+          command: npm run lint
       - run:
-          command: yarn run test --ci
+          command: npm run test --ci
       - run:
-          command: yarn run test:coverage --ci
+          command: npm run test:coverage --ci
       - run:
-          command: yarn run build
+          command: npm run build
 
 workflows:
   version: 2
