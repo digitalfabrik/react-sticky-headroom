@@ -1,4 +1,4 @@
-// flow-typed signature: 495de4e88070a3010e8f3a34269cb5dc
+// flow-typed signature: 029c45f838294c42f5621a2fbc0e2222
 // flow-typed version: d55f290df6/webpack_v5.x.x/flow_>=v0.104.x
 
 declare module 'webpack' {

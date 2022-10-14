@@ -1,4 +1,4 @@
-// flow-typed signature: 3a0788664ab443b1ebc2c48af204cc63
+// flow-typed signature: bf6205896c200fb28700dfa8d29f2b8a
 // flow-typed version: 3d76504c27/semver_v7.x.x/flow_>=v0.104.x
 
 declare module "semver" {

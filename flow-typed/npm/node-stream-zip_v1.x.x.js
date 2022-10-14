@@ -1,4 +1,4 @@
-// flow-typed signature: 160db693b2711053051793b2f899abab
+// flow-typed signature: bd18604d0696d9e4ad0da443cf74273b
 // flow-typed version: 1ff21d416b/node-stream-zip_v1.x.x/flow_>=v0.104.x
 
 declare module 'node-stream-zip' {

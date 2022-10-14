@@ -1,4 +1,4 @@
-// flow-typed signature: dcdeed5a29a613f9ae85fcd7421ee4db
+// flow-typed signature: 6c56e55f6af24f47c33f50f10270785f
 // flow-typed version: 590676b089/colors_v1.x.x/flow_>=v0.104.x
 
 declare module "colors" {

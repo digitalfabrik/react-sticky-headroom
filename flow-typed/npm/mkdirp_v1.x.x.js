@@ -1,4 +1,4 @@
-// flow-typed signature: 21ecfa728d156481e88bb39facc231ce
+// flow-typed signature: 28ddcca31abd597a77830710de25f5fe
 // flow-typed version: a75473352d/mkdirp_v1.x.x/flow_>=v0.83.x
 
 declare module 'mkdirp' {

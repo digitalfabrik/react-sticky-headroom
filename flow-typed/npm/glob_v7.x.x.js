@@ -1,4 +1,4 @@
-// flow-typed signature: 1b9e1384cdb2a63ae10986e1ce69ad1d
+// flow-typed signature: d2a519d7d007e9ba3e5bf2ac3ff76eca
 // flow-typed version: f243e51ed7/glob_v7.x.x/flow_>=v0.104.x
 
 declare module "glob" {

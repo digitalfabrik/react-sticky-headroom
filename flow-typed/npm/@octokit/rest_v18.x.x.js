@@ -1,4 +1,4 @@
-// flow-typed signature: d4b070faf560670457b2d4dc8e3407e8
+// flow-typed signature: a09a5a92a3c1ded961684da6ff393a70
 // flow-typed version: 15ea1b476e/@octokit/rest_v18.x.x/flow_>=v0.83.x
 
 declare module '@octokit/rest' {

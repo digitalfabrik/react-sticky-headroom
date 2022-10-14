@@ -1,4 +1,4 @@
-// flow-typed signature: dedbdba83ab756c57a183b05cafa8a98
+// flow-typed signature: beb4c73787fb04b445ce22aee439eed9
 // flow-typed version: d81afd5307/fs-extra_v8.x.x/flow_>=v0.104.x
 
 declare module "fs-extra" {
