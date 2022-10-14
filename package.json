@@ -42,13 +42,13 @@
     "test:coverage": "jest --config jest.config.json --coverage",
     "test:watch": "jest --config jest.config.json --watchAll",
     "test:update": "jest --config jest.config.json -u",
-    "lint": "yarn run eslint && yarn run stylelint",
-    "lint:fix": "yarn run eslint --fix && yarn run stylelint",
+    "lint": "npm run eslint && npm run stylelint",
+    "lint:fix": "npm run eslint --fix && npm run stylelint",
     "eslint": "eslint .",
     "stylelint": "stylelint './src/**/*.js'",
     "flow:check-now": "flow check",
     "flow:install-types": "flow-typed install --skip",
-    "prepublishOnly": "yarn build && yarn build:demo && yarn test && yarn lint && yarn flow:check-now"
+    "prepublishOnly": "npm run build && npm run build:demo && npm run test && npm run lint && npm run flow:check-now"
   },
   "peerDependencies": {
     "react": "16.x.x || 17.x.x || 18.x.x",
@@ -77,6 +77,7 @@
     "@babel/preset-flow": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
     "@babel/runtime": "^7.17.8",
+    "@stylelint/postcss-css-in-js": "^0.38.0",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
     "babel-plugin-styled-components": "^2.0.6",
@@ -84,8 +85,8 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
-    "eslint": "^8.11.0",
-    "eslint-config-standard": "^16.0.3",
+    "eslint": "^8.25.0",
+    "eslint-config-standard": "^17.0.0",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^26.1.3",
@@ -103,10 +104,9 @@
     "react-dom": "^16.14.0",
     "rimraf": "^3.0.2",
     "styled-components": "^5.3.3",
-    "stylelint": "^14.6.0",
+    "stylelint": "^14.13.0",
     "stylelint-config-recommended": "^7.0.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0",
     "webpack": "^5.70.0"
   },
   "packageManager": "yarn@3.2.0"
