@@ -2,7 +2,8 @@
 .*/node_modules/config-chain/test/broken.json
 <PROJECT_ROOT>/index.js
 <PROJECT_ROOT>/index.js.flow
-<PROJECT_ROOT>/node_modules/resolve/test/resolver/malformed_package_json/package.json
+.*/node_modules/resolve/test/resolver/malformed_package_json/package.json
+
 
 [include]
 
