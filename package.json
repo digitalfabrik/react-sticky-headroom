@@ -104,8 +104,8 @@
     "react-dom": "^16.14.0",
     "rimraf": "^3.0.2",
     "styled-components": "^5.3.3",
-    "stylelint": "^14.13.0",
-    "stylelint-config-recommended": "^7.0.0",
+    "stylelint": "^15.6.0",
+    "stylelint-config-recommended": "^12.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "webpack": "^5.70.0"
   }
