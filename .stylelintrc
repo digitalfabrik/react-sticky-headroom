@@ -6,7 +6,7 @@
   "overrides": [
     {
       "files": [
-        "**/*.{js,ts}"
+        "**/*.{js,ts,tsx}"
       ],
       "customSyntax": "@stylelint/postcss-css-in-js",
       "rules": {

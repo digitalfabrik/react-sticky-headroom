@@ -1,5 +1,3 @@
-// @flow
-
 export default {
   'United States': ['Adak', 'Pago Pago', 'Honolulu', 'Hilo', 'Anchorage',
     'Fairbanks', 'Sitka', 'Juneau', 'Adamstown', 'Portland', 'San Francisco',
@@ -83,4 +81,4 @@ export default {
     'Nagoya', 'Yokohama', 'Kawasaki', 'Sapporo', 'Tokyo'],
   'New Zealand': ['Invercargill', 'Dunedin', 'Christchurch', 'Wellington',
     'Auckland']
-}
+} as const

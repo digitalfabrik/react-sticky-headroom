@@ -1,18 +1,18 @@
-const path = require('path')
-const webpack = require('webpack')
-const babelConfig = require('../.babelrc.js')
+import { resolve } from 'path'
+import * as webpack from 'webpack'
 
-const webpackConfig = {
+const webpackConfig: webpack.Configuration = {
   mode: 'production',
   resolve: {
     modules: [
-      path.resolve('./node_modules')
-    ]
+      resolve('./node_modules')
+    ],
+    extensions: ['.ts', '.tsx', '.js']
   },
-  context: path.resolve(__dirname, '../demo'),
-  entry: './demo.js',
+  context: resolve(__dirname, '../demo'),
+  entry: './demo.tsx',
   output: {
-    path: path.resolve(__dirname, '../docs/'),
+    path: resolve(__dirname, '../docs/'),
     filename: 'demo.js'
   },
   plugins: [
@@ -25,10 +25,9 @@ const webpackConfig = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.tsx?$/,
         exclude: /node_modules\/.*/,
-        loader: 'babel-loader',
-        options: babelConfig
+        loader: 'babel-loader'
       }
     ]
   }
@@ -38,6 +37,6 @@ webpack(webpackConfig).run((err, stats) => {
   if (err) {
     throw err
   } else {
-    console.log(stats.toString(webpackConfig.stats))
+    console.log(stats?.toString(webpackConfig.stats))
   }
 })

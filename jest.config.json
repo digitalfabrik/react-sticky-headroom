@@ -4,19 +4,16 @@
   "automock": false,
   "testEnvironment": "jsdom",
   "setupFiles": [
-    "<rootDir>/setupTest.js"
-  ],
-  "moduleFileExtensions": [
-    "js"
-  ],
-  "moduleDirectories": [
-    "node_modules"
+    "<rootDir>/setupTest.ts"
   ],
   "globals": {
     "__DEV__": false
   },
-  "collectCoverageFrom": [
-    "**/*.{js,jsx}"
+  "transform": {
+    "^.+\\.(t|j)sx?$": "@swc/jest"
+  },
+    "collectCoverageFrom": [
+    "**/*.{ts,tsx}"
   ],
   "coverageDirectory": "../__coverage__",
   "snapshotSerializers": [

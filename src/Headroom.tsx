@@ -1,8 +1,4 @@
-// @flow
-
-import type { Node } from 'react'
 import * as React from 'react'
-import type { StyledComponent } from 'styled-components'
 import styled, { css, keyframes } from 'styled-components'
 
 const UPWARDS = 'up'
@@ -20,9 +16,9 @@ type ModeType = 'pinned' | 'unpinned' | 'static'
 type DirectionType = 'up' | 'down'
 type TransitionType = 'none' | 'normal' | 'pinned-to-static'
 
-type PropsType = $ReadOnly<{|
+type PropsType = {
   /** The child node to be displayed as a header */
-  children: Node,
+  children: React.ReactNode,
   /** The maximum amount of px the header should move up when scrolling */
   scrollHeight: number,
   /** The minimum scrollTop position where the transform should start */
@@ -30,45 +26,47 @@ type PropsType = $ReadOnly<{|
   /** Used for calculating the stickyTop position of an ancestor */
   height?: number,
   /** Fired, when Headroom changes its state. Passes stickyTop of the ancestor. */
-  onStickyTopChanged?: (number) => void,
+  onStickyTopChanged?: (stickyTop: number) => void,
   /** True, if sticky position should be disabled (e.g. for edge 16 support) */
   positionStickyDisabled?: boolean,
   /** The parent element firing the scroll event. Defaults to document.documentElement */
-  parent: ?HTMLElement,
+  parent?: HTMLElement | null,
   /** The z-index used by the wrapper. Defaults to 1. */
   zIndex?: number,
   /** A classname for applying custom styles to the wrapper. Use at your own risk. */
   className?: string
-|}>
+}
 
-type StateType = $ReadOnly<{|
+type StateType = {
   mode: ModeType,
   transition: TransitionType,
-  animateUpFrom: ?number
-|}>
+  animateUpFrom: number | null
+}
 
-const HeaderWrapper: StyledComponent<{|
+const HeaderWrapper = styled.div<{
   positionStickyDisabled: boolean,
   translateY: number,
   transition: TransitionType,
-  animateUpFrom: ?number,
-  zIndex: number
-|}, *, *, *> = styled.div`
+  animateUpFrom: number | null,
+  $zIndex?: number,
+  $top: number,
+  $static: boolean
+}>`
   position: ${props => props.positionStickyDisabled ? 'static' : 'sticky'};
-  top: ${props => props.top}px;
-  z-index: ${props => props.zIndex};
+  top: ${props => props.$top}px;
+  z-index: ${props => props.$zIndex};
   transform: translateY(${props => props.translateY}px);
   animation-duration: 0.2s;
   animation-timing-function: ease-out;
-  ${props => props.transition === NORMAL_TRANSITION && !props.static
+  ${props => props.transition === NORMAL_TRANSITION && !props.$static
   ? 'transition: transform 0.2s ease-out;'
   : ''}
-  ${props => props.transition === PINNED_TO_STATIC
+  ${props => props.transition === PINNED_TO_STATIC && props.animateUpFrom
   ? css`
     animation-name: ${keyframesMoveUpFrom(props.animateUpFrom)};
   `
   : ''}
-  ${props => props.static ? 'transition: none;' : ''}
+  ${props => props.$static ? 'transition: none;' : ''}
 `
 
 const keyframesMoveUpFrom = (from: number) => keyframes`
@@ -79,10 +77,10 @@ const keyframesMoveUpFrom = (from: number) => keyframes`
     to {
       transform: translateY(0)
     }
-  `
+`
 
 class Headroom extends React.PureComponent<PropsType, StateType> {
-  static defaultProps: {| pinStart: number, zIndex: number, parent: ?HTMLElement |} = {
+  static defaultProps: { pinStart: number, zIndex: number, parent: HTMLElement | null } = {
     pinStart: 0,
     zIndex: 1,
     parent: window.document.documentElement
@@ -110,8 +108,8 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     }
     if (window.pageYOffset !== undefined) {
       return window.pageYOffset
-    } else if (window.scrollTop !== undefined) {
-      return window.scrollTop
+    } else if (window.scrollY !== undefined) {
+      return window.scrollY
     } else if (document.documentElement) {
       return document.documentElement.scrollTop
     } else if (document.body) {
@@ -125,7 +123,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     this.addScrollListener(this.props.parent)
   }
 
-  addScrollListener (parent: ?HTMLElement) {
+  addScrollListener (parent?: HTMLElement | null) {
     if (parent === window.document.documentElement) {
       window.addEventListener('scroll', this.handleEvent)
     } else if (parent) {
@@ -135,7 +133,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     }
   }
 
-  removeScrollListener (parent: ?HTMLElement) {
+  removeScrollListener (parent?: HTMLElement | null) {
     if (parent === window.document.documentElement) {
       window.removeEventListener('scroll', this.handleEvent)
     } else if (parent) {
@@ -212,7 +210,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
    */
   update: () => void = () => {
     const currentScrollTop = this.getScrollTop()
-    const newState = {}
+    const newState: Partial<StateType> = {}
     if (currentScrollTop === this.lastKnownScrollTop) {
       return
     }
@@ -235,7 +233,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     if (onStickyTopChanged && newState.mode !== this.state.mode && height) {
       onStickyTopChanged(Headroom.calcStickyTop(newState.mode, height, scrollHeight))
     }
-    this.setState(newState)
+    this.setState(newState as StateType)
     this.lastKnownScrollTop = currentScrollTop
   }
 
@@ -251,7 +249,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     return mode === PINNED ? height : height - scrollHeight
   }
 
-  render (): * {
+  render (): React.ReactElement {
     const {
       children,
       scrollHeight,
@@ -269,12 +267,12 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     return <HeaderWrapper
       className={className}
       translateY={transform}
-      top={ownStickyTop}
+      $top={ownStickyTop}
       transition={transition}
-      positionStickyDisabled={positionStickyDisabled}
-      static={mode === STATIC}
+      positionStickyDisabled={!!positionStickyDisabled}
+      $static={mode === STATIC}
       animateUpFrom={animateUpFrom}
-      zIndex={zIndex}>
+      $zIndex={zIndex}>
       {children}
     </HeaderWrapper>
   }

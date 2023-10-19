@@ -1,20 +1,17 @@
 {
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "standard",
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:jest/recommended",
-    "plugin:flowtype/recommended"
+    "plugin:jest/recommended"
   ],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "plugins": [
-    "flowtype"
-  ],
   "env": {
     "node": true,
     "browser": true

@@ -1,5 +1,3 @@
-// @flow
-
 import ReactDOM from 'react-dom'
 import React from 'react'
 import StickyHeadroom from '../src/Headroom'
@@ -28,7 +26,7 @@ const PreHeader = styled.div`
   background: aquamarine;
 `
 
-const Country = styled.div`
+const Country = styled.div<{stickyTop: number}>`
   position: sticky;
   top: ${props => props.stickyTop}px;
   padding: 20px 10px;
@@ -41,13 +39,13 @@ const City = styled.div`
   padding: 5px 20px;
 `
 
-class Demo extends React.Component<{}, { stickyTop: number, secondStickyTop: number }> {
+class Demo extends React.PureComponent<Record<string, never>, { stickyTop: number, secondStickyTop: number }> {
   state = {
     stickyTop: 0,
     secondStickyTop: 0
   }
 
-  secondScroller = React.createRef()
+  secondScroller = React.createRef<HTMLDivElement>()
   resolveSecondScroller = () => this.secondScroller.current
 
   onStickyTopChanged = (stickyTop: number) => {
@@ -78,7 +76,7 @@ class Demo extends React.Component<{}, { stickyTop: number, secondStickyTop: num
           href='https://github.com/Integreat/react-sticky-headroom/tree/master/demo/demo.js'>here</a>.</h2>
         <h3>Look at all these cities grouped by their countries:</h3>
       </div>
-      {Object.keys(CITIES).map(key =>
+      {(Object.keys(CITIES) as Array<keyof typeof CITIES>).map((key) =>
         <div key={key}>
           <Country stickyTop={stickyTop}>
             {key}
@@ -99,7 +97,7 @@ class Demo extends React.Component<{}, { stickyTop: number, secondStickyTop: num
             <h5>Second submenu is always visible in the box, so keep on scrolling!</h5>
           </Header>
         </StickyHeadroom>
-        {Object.keys(CITIES).map(key =>
+        {(Object.keys(CITIES) as Array<keyof typeof CITIES>).map(key =>
           <div key={key}>
             <Country stickyTop={secondStickyTop}>
               {key}

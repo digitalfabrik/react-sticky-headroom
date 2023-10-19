@@ -1,9 +1,7 @@
-// @flow
-
-import * as React from 'react'
-import { mount } from 'enzyme'
+import { ReactWrapper, mount } from 'enzyme'
 import Headroom from '../Headroom'
 import 'jest-styled-components'
+import React, { ComponentProps } from 'react'
 
 const pinStart = 10
 const height = 100
@@ -12,16 +10,22 @@ const scrollHeight = 50
 describe('Headroom', () => {
   const MockNode = () => <div />
 
-  const createComponent = props => mount(
-        <Headroom scrollHeight={50}
-                  height={100}
-                  {...props}>
-            <MockNode />
-        </Headroom>)
+  const createComponent = (
+    props: Partial<ComponentProps<typeof Headroom>> = {}
+  ) =>
+    mount(
+      <Headroom scrollHeight={50} height={100} {...props}>
+        <MockNode />
+      </Headroom>
+    ) as ReactWrapper<ComponentProps<typeof Headroom>, object, InstanceType<typeof Headroom>>
 
   it('should have correct default state', () => {
     const component = createComponent()
-    expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
+    expect(component.state()).toEqual({
+      mode: 'static',
+      transition: 'none',
+      animateUpFrom: null
+    })
     expect(component.prop('pinStart')).toEqual(0)
   })
 
@@ -31,11 +35,13 @@ describe('Headroom', () => {
     expect(component.childAt(0).props()).toEqual({
       animateUpFrom: null,
       children: <MockNode />,
-      static: true,
-      top: -50,
+      className: undefined,
+      positionStickyDisabled: false,
+      $static: true,
+      $top: -50,
       transition: 'none',
       translateY: 0,
-      zIndex: 1
+      $zIndex: 1
     })
   })
 
@@ -45,11 +51,17 @@ describe('Headroom', () => {
     window.addEventListener = jest.fn()
     window.removeEventListener = jest.fn()
 
-    const component = mount(<Headroom scrollHeight={50}><MockNode /></Headroom>)
+    const component = createComponent({ scrollHeight: 50 })
     const handleEventCallback = component.instance().handleEvent
-    expect(window.addEventListener).toHaveBeenCalledWith('scroll', handleEventCallback)
+    expect(window.addEventListener).toHaveBeenCalledWith(
+      'scroll',
+      handleEventCallback
+    )
     component.unmount()
-    expect(window.removeEventListener).toHaveBeenCalledWith('scroll', handleEventCallback)
+    expect(window.removeEventListener).toHaveBeenCalledWith(
+      'scroll',
+      handleEventCallback
+    )
 
     window.addEventListener = originalAdd
     window.removeEventListener = originalRemove
@@ -57,8 +69,10 @@ describe('Headroom', () => {
 
   it('should request animation frame and update, on handleEvent', () => {
     const originalRaf = window.requestAnimationFrame
-    window.requestAnimationFrame = jest.fn()
-    const component = mount(<Headroom scrollHeight={50}><MockNode /></Headroom>)
+    const requestAnimationFrameMock = jest.fn()
+    window.requestAnimationFrame = requestAnimationFrameMock
+    const component = createComponent({ scrollHeight: 50 })
+
     component.instance().update = jest.fn()
 
     // Call first time
@@ -66,65 +80,106 @@ describe('Headroom', () => {
     expect(window.requestAnimationFrame).toHaveBeenCalledTimes(1)
     expect(component.instance().update).toHaveBeenCalledTimes(0)
     // Now perform the raf
-    window.requestAnimationFrame.mock.calls[0][0]()
+    requestAnimationFrameMock.mock.calls[0][0]()
     expect(component.instance().update).toHaveBeenCalledTimes(1)
 
     window.requestAnimationFrame = originalRaf
   })
 
   describe('update', () => {
-    const scrollTo = (scrollTo, component) => {
+    const scrollTo = (scrollTo: number, component: ReturnType<typeof createComponent>) => {
       window.pageYOffset = scrollTo
       component.instance().update()
     }
-    it('should set correct state, if user hasn\'t scrolled beyond pinStart', () => {
+    it("should set correct state, if user hasn't scrolled beyond pinStart", () => {
       const component = createComponent({ pinStart, height, scrollHeight })
       scrollTo(0, component)
       scrollTo(pinStart / 2, component)
-      expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
+      expect(component.state()).toEqual({
+        mode: 'static',
+        transition: 'none',
+        animateUpFrom: null
+      })
     })
 
     it('should set correct state, if user has scrolled down to pinStart + scrollHeight/2', () => {
       const component = createComponent({ pinStart, height, scrollHeight })
       scrollTo(0, component)
       scrollTo(pinStart + scrollHeight / 2, component)
-      expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
+      expect(component.state()).toEqual({
+        mode: 'static',
+        transition: 'none',
+        animateUpFrom: null
+      })
     })
 
     it('should set correct state, if user has scrolled down and back up again', () => {
       const component = createComponent({ pinStart, height, scrollHeight })
       scrollTo(pinStart, component)
-      expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
+      expect(component.state()).toEqual({
+        mode: 'static',
+        transition: 'none',
+        animateUpFrom: null
+      })
 
       const offset = 5
       scrollTo(pinStart + scrollHeight, component)
       // Header is completely transformed to the top
-      expect(component.state()).toEqual({ mode: 'static', transition: 'none', animateUpFrom: null })
+      expect(component.state()).toEqual({
+        mode: 'static',
+        transition: 'none',
+        animateUpFrom: null
+      })
 
       scrollTo(pinStart + scrollHeight + offset, component)
       // Header should be unpinned now, transitions should be off though
-      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none', animateUpFrom: null })
+      expect(component.state()).toEqual({
+        mode: 'unpinned',
+        transition: 'none',
+        animateUpFrom: null
+      })
 
       scrollTo(pinStart + offset / 2, component)
       // Header should be pinned with transition, because we're scrolling upwards
-      expect(component.state()).toEqual({ mode: 'pinned', transition: 'normal', animateUpFrom: null })
+      expect(component.state()).toEqual({
+        mode: 'pinned',
+        transition: 'normal',
+        animateUpFrom: null
+      })
 
       scrollTo(pinStart + offset, component)
-      expect(component.state()).toEqual({ mode: 'static', transition: 'pinned-to-static', animateUpFrom: offset })
+      expect(component.state()).toEqual({
+        mode: 'static',
+        transition: 'pinned-to-static',
+        animateUpFrom: offset
+      })
     })
 
-    it('shouldn\'t update state if update is called with same scrollTop', () => {
+    it("shouldn't update state if update is called with same scrollTop", () => {
       const component = createComponent({ pinStart, height, scrollHeight })
       const offset = 5
       scrollTo(pinStart + scrollHeight + offset, component)
-      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none', animateUpFrom: null })
+      expect(component.state()).toEqual({
+        mode: 'unpinned',
+        transition: 'none',
+        animateUpFrom: null
+      })
       scrollTo(pinStart + scrollHeight + offset, component)
-      expect(component.state()).toEqual({ mode: 'unpinned', transition: 'none', animateUpFrom: null })
+      expect(component.state()).toEqual({
+        mode: 'unpinned',
+        transition: 'none',
+        animateUpFrom: null
+      })
     })
 
     it('should call onStickyTopChanged if mode has changed', () => {
       const onStickyTopChanged = jest.fn()
-      const component = createComponent({ pinStart, height, scrollHeight, onStickyTopChanged })
+      const component = createComponent({
+        pinStart,
+        height,
+        scrollHeight,
+        onStickyTopChanged
+      })
 
       scrollTo(pinStart + scrollHeight + 10, component)
       expect(onStickyTopChanged).toHaveBeenCalledWith(scrollHeight)
@@ -139,11 +194,13 @@ describe('Headroom', () => {
     expect(component.childAt(0).props()).toEqual({
       animateUpFrom: null,
       children: <MockNode />,
-      static: true,
-      top: -50,
+      className: undefined,
+      positionStickyDisabled: false,
+      $static: true,
+      $top: -50,
       transition: 'none',
       translateY: 0,
-      zIndex: 1
+      $zIndex: 1
     })
   })
 
@@ -153,11 +210,13 @@ describe('Headroom', () => {
     expect(component.childAt(0).props()).toEqual({
       animateUpFrom: null,
       children: <MockNode />,
-      static: false,
-      top: 0,
+      className: undefined,
+      positionStickyDisabled: false,
+      $static: false,
+      $top: 0,
       transition: 'none',
       translateY: -50,
-      zIndex: 1
+      $zIndex: 1
     })
   })
 
@@ -167,11 +226,13 @@ describe('Headroom', () => {
     expect(component.childAt(0).props()).toEqual({
       animateUpFrom: null,
       children: <MockNode />,
-      static: false,
-      top: 0,
+      className: undefined,
+      positionStickyDisabled: false,
+      $static: false,
+      $top: 0,
       transition: 'normal',
       translateY: -50,
-      zIndex: 1
+      $zIndex: 1
     })
   })
 
@@ -181,11 +242,13 @@ describe('Headroom', () => {
     expect(component.childAt(0).props()).toEqual({
       animateUpFrom: null,
       children: <MockNode />,
-      static: false,
-      top: 0,
+      className: undefined,
+      positionStickyDisabled: false,
+      $static: false,
+      $top: 0,
       transition: 'normal',
       translateY: 0,
-      zIndex: 1
+      $zIndex: 1
     })
   })
 })
