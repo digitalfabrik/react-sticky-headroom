@@ -7,7 +7,7 @@ const webpackConfig: webpack.Configuration = {
     modules: [
       resolve('./node_modules')
     ],
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx']
   },
   context: resolve(__dirname, '../demo'),
   entry: './demo.tsx',
@@ -27,7 +27,7 @@ const webpackConfig: webpack.Configuration = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules\/.*/,
-        loader: 'babel-loader'
+        loader: 'swc-loader'
       }
     ]
   }

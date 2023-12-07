@@ -1,8 +1,6 @@
 import { writeFileSync } from 'fs'
-import { transformFileSync } from '@babel/core'
-import { compiler, beautify } from 'flowgen'
 import { CompilerOptions, createCompilerHost, createProgram } from 'typescript'
-
+import { transformFileSync } from '@swc/core'
 const entryFile = 'src/Headroom.tsx'
 
 function compile (fileNames: string[], options: CompilerOptions): Record<string, string> {
@@ -30,11 +28,9 @@ const typescriptDeclaration = createdFiles[entryFile.replace('.tsx', '.d.ts')]
 writeFileSync('./index.d.ts', typescriptDeclaration)
 console.log('typescript declarations successfully emitted')
 
-const flowdef = compiler.compileDefinitionString(typescriptDeclaration)
-writeFileSync('./index.js.flow', beautify(flowdef))
-console.log('flow declarations successfully emitted')
-
-const transpiled = transformFileSync(entryFile)?.code
+const transpiled = transformFileSync(entryFile, {
+  minify: true
+})?.code
 if (transpiled) {
   writeFileSync('./index.js', transpiled)
   console.log('source code successfully emitted')

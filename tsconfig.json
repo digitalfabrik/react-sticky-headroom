@@ -20,5 +20,5 @@
         "types": ["node", "jest"],
         "noEmit": true
     },
-    "include": ["src/**/*", "demo/**/*", "tools/*", ".babelrc.js"]
+    "include": ["src/**/*", "demo/**/*", "tools/*"]
 }

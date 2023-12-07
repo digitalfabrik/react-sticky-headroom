@@ -44,24 +44,24 @@ type StateType = {
 }
 
 const HeaderWrapper = styled.div<{
-  positionStickyDisabled: boolean,
-  translateY: number,
-  transition: TransitionType,
+  $positionStickyDisabled: boolean,
+  $translateY: number,
+  $transition: TransitionType,
   animateUpFrom: number | null,
   $zIndex?: number,
   $top: number,
   $static: boolean
 }>`
-  position: ${props => props.positionStickyDisabled ? 'static' : 'sticky'};
+  position: ${props => props.$positionStickyDisabled ? 'static' : 'sticky'};
   top: ${props => props.$top}px;
   z-index: ${props => props.$zIndex};
-  transform: translateY(${props => props.translateY}px);
+  transform: translateY(${props => props.$translateY}px);
   animation-duration: 0.2s;
   animation-timing-function: ease-out;
-  ${props => props.transition === NORMAL_TRANSITION && !props.$static
+  ${props => props.$transition === NORMAL_TRANSITION && !props.$static
   ? 'transition: transform 0.2s ease-out;'
   : ''}
-  ${props => props.transition === PINNED_TO_STATIC && props.animateUpFrom
+  ${props => props.$transition === PINNED_TO_STATIC && props.animateUpFrom !== null
   ? css`
     animation-name: ${keyframesMoveUpFrom(props.animateUpFrom)};
   `
@@ -106,11 +106,8 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     if (parent !== document.documentElement) {
       console.warn('Could not find parent for StickyHeadroom. Defaulting to window, documentElement or body.')
     }
-    if (window.pageYOffset !== undefined) {
-      return window.pageYOffset
-    } else if (window.scrollY !== undefined) {
-      return window.scrollY
-    } else if (document.documentElement) {
+
+    if (document.documentElement) {
       return document.documentElement.scrollTop
     } else if (document.body) {
       return document.body.scrollTop
@@ -266,10 +263,10 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     const ownStickyTop = mode === STATIC ? -scrollHeight : 0
     return <HeaderWrapper
       className={className}
-      translateY={transform}
+      $translateY={transform}
       $top={ownStickyTop}
-      transition={transition}
-      positionStickyDisabled={!!positionStickyDisabled}
+      $transition={transition}
+      $positionStickyDisabled={!!positionStickyDisabled}
       $static={mode === STATIC}
       animateUpFrom={animateUpFrom}
       $zIndex={zIndex}>

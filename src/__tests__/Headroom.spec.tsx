@@ -7,6 +7,8 @@ const pinStart = 10
 const height = 100
 const scrollHeight = 50
 
+type MountedHeadroom = ReactWrapper<ComponentProps<typeof Headroom>, object, InstanceType<typeof Headroom>>
+
 describe('Headroom', () => {
   const MockNode = () => <div />
 
@@ -17,7 +19,7 @@ describe('Headroom', () => {
       <Headroom scrollHeight={50} height={100} {...props}>
         <MockNode />
       </Headroom>
-    ) as ReactWrapper<ComponentProps<typeof Headroom>, object, InstanceType<typeof Headroom>>
+    ) as MountedHeadroom
 
   it('should have correct default state', () => {
     const component = createComponent()
@@ -51,7 +53,7 @@ describe('Headroom', () => {
     window.addEventListener = jest.fn()
     window.removeEventListener = jest.fn()
 
-    const component = createComponent({ scrollHeight: 50 })
+    const component = mount(<Headroom scrollHeight={50}><MockNode /></Headroom>) as MountedHeadroom
     const handleEventCallback = component.instance().handleEvent
     expect(window.addEventListener).toHaveBeenCalledWith(
       'scroll',
@@ -71,8 +73,7 @@ describe('Headroom', () => {
     const originalRaf = window.requestAnimationFrame
     const requestAnimationFrameMock = jest.fn()
     window.requestAnimationFrame = requestAnimationFrameMock
-    const component = createComponent({ scrollHeight: 50 })
-
+    const component = mount(<Headroom scrollHeight={50}><MockNode /></Headroom>) as MountedHeadroom
     component.instance().update = jest.fn()
 
     // Call first time
