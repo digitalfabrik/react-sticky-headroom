@@ -38,11 +38,11 @@ describe('Headroom', () => {
       animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
-      positionStickyDisabled: false,
+      $positionStickyDisabled: false,
       $static: true,
       $top: -50,
-      transition: 'none',
-      translateY: 0,
+      $transition: 'none',
+      $translateY: 0,
       $zIndex: 1
     })
   })
@@ -196,11 +196,11 @@ describe('Headroom', () => {
       animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
-      positionStickyDisabled: false,
+      $positionStickyDisabled: false,
       $static: true,
       $top: -50,
-      transition: 'none',
-      translateY: 0,
+      $transition: 'none',
+      $translateY: 0,
       $zIndex: 1
     })
   })
@@ -212,11 +212,11 @@ describe('Headroom', () => {
       animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
-      positionStickyDisabled: false,
+      $positionStickyDisabled: false,
       $static: false,
       $top: 0,
-      transition: 'none',
-      translateY: -50,
+      $transition: 'none',
+      $translateY: -50,
       $zIndex: 1
     })
   })
@@ -228,11 +228,11 @@ describe('Headroom', () => {
       animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
-      positionStickyDisabled: false,
+      $positionStickyDisabled: false,
       $static: false,
       $top: 0,
-      transition: 'normal',
-      translateY: -50,
+      $transition: 'normal',
+      $translateY: -50,
       $zIndex: 1
     })
   })
@@ -244,11 +244,11 @@ describe('Headroom', () => {
       animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
-      positionStickyDisabled: false,
+      $positionStickyDisabled: false,
       $static: false,
       $top: 0,
-      transition: 'normal',
-      translateY: 0,
+      $transition: 'normal',
+      $translateY: 0,
       $zIndex: 1
     })
   })

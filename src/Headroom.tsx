@@ -107,7 +107,11 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
       console.warn('Could not find parent for StickyHeadroom. Defaulting to window, documentElement or body.')
     }
 
-    if (document.documentElement) {
+    if (window.pageYOffset !== undefined) {
+      return window.pageYOffset
+    } else if (window.scrollY !== undefined) {
+      return window.scrollY
+    } if (document.documentElement) {
       return document.documentElement.scrollTop
     } else if (document.body) {
       return document.body.scrollTop
