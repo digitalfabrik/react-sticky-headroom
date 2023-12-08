@@ -1,6 +1,7 @@
 import { writeFileSync } from 'fs'
 import { CompilerOptions, createCompilerHost, createProgram } from 'typescript'
 import { transformFileSync } from '@swc/core'
+
 const entryFile = 'src/Headroom.tsx'
 
 function compile (fileNames: string[], options: CompilerOptions): Record<string, string> {
