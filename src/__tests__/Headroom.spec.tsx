@@ -35,7 +35,7 @@ describe('Headroom', () => {
     const component = createComponent()
     component.setState({ transform: 42, stickyTop: 24 })
     expect(component.childAt(0).props()).toEqual({
-      animateUpFrom: null,
+      $animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
       $positionStickyDisabled: false,
@@ -193,7 +193,7 @@ describe('Headroom', () => {
     const component = createComponent({ pinStart, height, scrollHeight })
     component.setState({ mode: 'static', transition: 'none' })
     expect(component.childAt(0).props()).toEqual({
-      animateUpFrom: null,
+      $animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
       $positionStickyDisabled: false,
@@ -209,7 +209,7 @@ describe('Headroom', () => {
     const component = createComponent({ pinStart, height, scrollHeight })
     component.setState({ mode: 'unpinned', transition: 'none' })
     expect(component.childAt(0).props()).toEqual({
-      animateUpFrom: null,
+      $animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
       $positionStickyDisabled: false,
@@ -225,7 +225,7 @@ describe('Headroom', () => {
     const component = createComponent({ pinStart, height, scrollHeight })
     component.setState({ mode: 'unpinned', transition: 'normal' })
     expect(component.childAt(0).props()).toEqual({
-      animateUpFrom: null,
+      $animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
       $positionStickyDisabled: false,
@@ -241,7 +241,7 @@ describe('Headroom', () => {
     const component = createComponent({ pinStart, height, scrollHeight })
     component.setState({ mode: 'pinned', transition: 'normal' })
     expect(component.childAt(0).props()).toEqual({
-      animateUpFrom: null,
+      $animateUpFrom: null,
       children: <MockNode />,
       className: undefined,
       $positionStickyDisabled: false,
