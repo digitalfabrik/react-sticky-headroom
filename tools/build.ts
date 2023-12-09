@@ -1,14 +1,13 @@
-import { writeFileSync } from 'fs'
+import { writeFileSync, copyFileSync } from 'fs'
 import { CompilerOptions, createCompilerHost, createProgram } from 'typescript'
 import { transformFileSync } from '@swc/core'
-
-const entryFile = 'src/Headroom.tsx'
 
 function compile (fileNames: string[], options: CompilerOptions): Record<string, string> {
   // Create a Program with an in-memory emit
   const createdFiles: Record<string, string> = {}
   const host = createCompilerHost(options)
-  host.writeFile = (fileName: string, contents: string) => (createdFiles[fileName] = contents)
+  host.writeFile = (fileName: string, contents: string) =>
+    (createdFiles[fileName] = contents)
 
   // Prepare and emit the d.ts files
   const program = createProgram(fileNames, options, host)
@@ -18,21 +17,74 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
   return createdFiles
 }
 
-// Run the compiler
-const createdFiles = compile([entryFile], {
-  allowJs: true,
-  declaration: true,
-  emitDeclarationOnly: true
-})
+// We generate these files:
+// * index.tsx (a copy of src/Headroom.tsx)                                             - using typescript
+// * index.d.ts (which is the typescript declaration)                                   - using typescript
+// * index.d.ts.map (the source map for index.d.ts)                                     - using typescript
+// * index.js (which strips the typescript annotations and optimizes styled-components) - using swc
+// * index.js.map (the source map for index.js)                                         - using swc
 
-const typescriptDeclaration = createdFiles[entryFile.replace('.tsx', '.d.ts')]
-writeFileSync('./index.d.ts', typescriptDeclaration)
-console.log('typescript declarations successfully emitted')
+{
+  // Generating index.tsx, index.d.ts, and index.d.ts.map
 
-const transpiled = transformFileSync(entryFile, {
-  minify: true
-})?.code
-if (transpiled) {
-  writeFileSync('./index.js', transpiled)
-  console.log('source code successfully emitted')
+  copyFileSync('src/Headroom.tsx', 'index.tsx')
+  console.log('emitted index.tsx')
+
+  const createdFiles = compile(['index.tsx'], {
+    allowJs: true,
+    declaration: true,
+    emitDeclarationOnly: true,
+    declarationMap: true
+  })
+
+  const declarationFileName = 'index.d.ts'
+  if (!(declarationFileName in createdFiles)) {
+    throw Error('Failed to generate index.d.ts')
+  }
+  writeFileSync('./index.d.ts', createdFiles[declarationFileName])
+  console.log('emitted index.d.ts')
+
+  const declarationMapFileName = 'index.d.ts.map'
+  if (!(declarationMapFileName in createdFiles)) {
+    throw Error('Failed to generate index.d.ts.map')
+  }
+  writeFileSync('./index.d.ts.map', createdFiles[declarationMapFileName])
+  console.log('emitted index.d.ts.map')
+}
+
+{
+  // Generating index.js and index.js.map
+  const transpiled = transformFileSync('index.tsx', {
+    minify: false,
+    jsc: {
+      target: 'es2022',
+      experimental: {
+        plugins: [
+          [
+            '@swc/plugin-styled-components',
+            {
+              displayName: false,
+              ssr: false
+            }
+          ]
+        ]
+      }
+    },
+    sourceMaps: true
+  })
+
+  if (!transpiled) {
+    throw Error('Failed to generate index.js')
+  }
+  const codeWithSourceMapUrl = transpiled.code + '//# sourceMappingURL=index.js.map'
+
+  writeFileSync('./index.js', codeWithSourceMapUrl)
+  console.log('emitted index.dist.js')
+
+  const sourceMap = transpiled.map
+  if (!sourceMap) {
+    throw Error('Failed to generate index.js.map')
+  }
+  writeFileSync('./index.js.map', sourceMap)
+  console.log('emitted index.dist.js.map')
 }

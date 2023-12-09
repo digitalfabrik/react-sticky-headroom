@@ -15,11 +15,16 @@
   "license": "MIT",
   "description": "ReactStickyHeadroom is a React Component for hiding the header when scrolling.",
   "author": "Michael Markl <marklmichael98@gmail.com>",
-  "repository": "https://github.com/integreat/react-sticky-headroom",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/integreat/react-sticky-headroom.git"
+  },
   "files": [
     "index.js",
-    "index.js.flow",
-    "index.d.ts"
+    "index.js.map",
+    "index.d.ts",
+    "index.d.ts.map",
+    "index.tsx"
   ],
   "publishConfig": {
     "access": "public"
@@ -42,7 +47,7 @@
     "test:watch": "jest --config jest.config.json --watchAll",
     "test:update": "jest --config jest.config.json -u",
     "lint": "npm run eslint && npm run stylelint",
-    "lint:fix": "npm run eslint --fix && npm run stylelint",
+    "lint:fix": "eslint . --fix && npm run stylelint",
     "eslint": "eslint .",
     "stylelint": "stylelint './src/**/*.{ts,tsx}'",
     "ts:check": "tsc",
@@ -56,6 +61,7 @@
     "@stylelint/postcss-css-in-js": "^0.38.0",
     "@swc/core": "^1.3.100",
     "@swc/jest": "^0.2.29",
+    "@swc/plugin-styled-components": "^1.5.105",
     "@types/enzyme": "^3.10.15",
     "@types/enzyme-adapter-react-16": "^1.0.8",
     "@types/jest": "^29.5.6",
