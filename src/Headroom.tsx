@@ -1,20 +1,20 @@
-import * as React from 'react'
+import React from 'react'
 import styled, { css, keyframes } from 'styled-components'
 
-const UPWARDS = 'up'
-const DOWNWARDS = 'down'
+const DIRECTION_UP = 'up'
+const DIRECTION_DOWN = 'down'
 
-const UNPINNED = 'unpinned'
-const PINNED = 'pinned'
-const STATIC = 'static'
+const MODE_UNPINNED = 'unpinned'
+const MODE_PINNED = 'pinned'
+const MODE_STATIC = 'static'
 
-const NO_TRANSITION = 'none'
-const NORMAL_TRANSITION = 'normal'
-const PINNED_TO_STATIC = 'pinned-to-static'
+const TRANSITION_NONE = 'none'
+const TRANSITION_NORMAL = 'normal'
+const TRANSITION_PINNED_TO_STATIC = 'pinned-to-static'
 
-type ModeType = 'pinned' | 'unpinned' | 'static'
-type DirectionType = 'up' | 'down'
-type TransitionType = 'none' | 'normal' | 'pinned-to-static'
+type ModeType = typeof MODE_PINNED | typeof MODE_UNPINNED | typeof MODE_STATIC
+type DirectionType = typeof DIRECTION_UP | typeof DIRECTION_DOWN
+type TransitionType = typeof TRANSITION_NONE | typeof TRANSITION_NORMAL | typeof TRANSITION_PINNED_TO_STATIC
 
 type PropsType = {
   /** The child node to be displayed as a header */
@@ -58,10 +58,10 @@ const HeaderWrapper = styled.div<{
   transform: translateY(${props => props.$translateY}px);
   animation-duration: 0.2s;
   animation-timing-function: ease-out;
-  ${props => props.$transition === NORMAL_TRANSITION && !props.$static
+  ${props => props.$transition === TRANSITION_NORMAL && !props.$static
   ? 'transition: transform 0.2s ease-out;'
   : ''}
-  ${props => props.$transition === PINNED_TO_STATIC && props.animateUpFrom !== null
+  ${props => props.$transition === TRANSITION_PINNED_TO_STATIC && props.animateUpFrom !== null
   ? css`
     animation-name: ${keyframesMoveUpFrom(props.animateUpFrom)};
   `
@@ -87,8 +87,8 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
   }
 
   state: StateType = {
-    mode: STATIC,
-    transition: NO_TRANSITION,
+    mode: MODE_STATIC,
+    transition: TRANSITION_NONE,
     animateUpFrom: null
   }
 
@@ -104,20 +104,13 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
       return parent.scrollTop
     }
     if (parent !== document.documentElement) {
-      console.warn('Could not find parent for StickyHeadroom. Defaulting to window, documentElement or body.')
+      console.warn('Could not determine scrollTop from parent for StickyHeadroom. Defaulting to window.pageYOffset.')
     }
-
-    if (window.pageYOffset !== undefined) {
-      return window.pageYOffset
-    } else if (window.scrollY !== undefined) {
-      return window.scrollY
-    } if (document.documentElement) {
-      return document.documentElement.scrollTop
-    } else if (document.body) {
-      return document.body.scrollTop
-    } else {
-      throw new Error('Could not determine scrollTop!')
+    if (window.pageYOffset === undefined) {
+      console.error('window.pageYOffset is undefined. Defaulting to 0.')
+      return 0
     }
+    return window.pageYOffset
   }
 
   componentDidMount () {
@@ -130,7 +123,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     } else if (parent) {
       parent.addEventListener('scroll', this.handleEvent)
     } else {
-      console.debug('Property parent of Headroom is null. Assuming, parent will be set soon...')
+      console.debug("'parent' prop of Headroom is null. Assuming, it will be set soon...")
     }
   }
 
@@ -163,8 +156,10 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
    * @returns {boolean} if we should set the header static
    */
   shouldSetStatic (scrollTop: number, direction: DirectionType): boolean {
-    if (this.state.mode === STATIC || (this.state.mode === PINNED && direction ===
-      DOWNWARDS)) {
+    if (
+      this.state.mode === MODE_STATIC ||
+      (this.state.mode === MODE_PINNED && direction === DIRECTION_DOWN)
+    ) {
       return this.props.pinStart + this.props.scrollHeight >= scrollTop
     } else {
       return this.props.pinStart >= scrollTop
@@ -179,9 +174,9 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
    */
   determineMode (scrollTop: number, direction: DirectionType): ModeType {
     if (this.shouldSetStatic(scrollTop, direction)) {
-      return STATIC
+      return MODE_STATIC
     } else {
-      return direction === UPWARDS ? PINNED : UNPINNED
+      return direction === DIRECTION_UP ? MODE_PINNED : MODE_UNPINNED
     }
   }
 
@@ -190,20 +185,21 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
    */
   determineTransition (mode: ModeType, direction: DirectionType): TransitionType {
     // Handle special case: If we're pinned and going to static, we need a special transition using css animation
-    if (this.state.mode === PINNED && mode === STATIC) {
-      return PINNED_TO_STATIC
+    if (this.state.mode === MODE_PINNED && mode === MODE_STATIC) {
+      return TRANSITION_PINNED_TO_STATIC
     }
     // If mode is static, then no transition, because we're already in the right spot
     // (and want to change transform and top properties seamlessly)
-    if (mode === STATIC) {
-      return this.state.transition === NO_TRANSITION
-        ? NO_TRANSITION
-        : PINNED_TO_STATIC
+    if (mode === MODE_STATIC) {
+      return this.state.transition === TRANSITION_NONE
+        ? TRANSITION_NONE
+        : TRANSITION_PINNED_TO_STATIC
     }
     // mode is not static, transition when moving upwards or when we've lastly did the transition
-    return direction === UPWARDS || this.state.transition === NORMAL_TRANSITION
-      ? NORMAL_TRANSITION
-      : NO_TRANSITION
+    return direction === DIRECTION_UP ||
+      this.state.transition === TRANSITION_NORMAL
+      ? TRANSITION_NORMAL
+      : TRANSITION_NONE
   }
 
   /**
@@ -215,19 +211,13 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     if (currentScrollTop === this.lastKnownScrollTop) {
       return
     }
-    const direction = this.lastKnownScrollTop < currentScrollTop
-      ? DOWNWARDS
-      : UPWARDS
+    const direction =
+      this.lastKnownScrollTop < currentScrollTop ? DIRECTION_DOWN : DIRECTION_UP
     newState.mode = this.determineMode(currentScrollTop, direction)
     newState.transition = this.determineTransition(newState.mode, direction)
 
-    const {
-      onStickyTopChanged,
-      height,
-      scrollHeight,
-      pinStart
-    } = this.props
-    if (this.state.mode === PINNED && newState.mode === STATIC) {
+    const { onStickyTopChanged, height, scrollHeight, pinStart } = this.props
+    if (this.state.mode === MODE_PINNED && newState.mode === MODE_STATIC) {
       // animation in the special case from pinned to static
       newState.animateUpFrom = currentScrollTop - pinStart
     }
@@ -247,7 +237,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
     height: number,
     scrollHeight: number
   ): number {
-    return mode === PINNED ? height : height - scrollHeight
+    return mode === MODE_PINNED ? height : height - scrollHeight
   }
 
   render (): React.ReactElement {
@@ -263,15 +253,15 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
       transition,
       animateUpFrom
     } = this.state
-    const transform = mode === UNPINNED ? -scrollHeight : 0
-    const ownStickyTop = mode === STATIC ? -scrollHeight : 0
+    const transform = mode === MODE_UNPINNED ? -scrollHeight : 0
+    const ownStickyTop = mode === MODE_STATIC ? -scrollHeight : 0
     return <HeaderWrapper
       className={className}
       $translateY={transform}
       $top={ownStickyTop}
       $transition={transition}
       $positionStickyDisabled={!!positionStickyDisabled}
-      $static={mode === STATIC}
+      $static={mode === MODE_STATIC}
       animateUpFrom={animateUpFrom}
       $zIndex={zIndex}>
       {children}
