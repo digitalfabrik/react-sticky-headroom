@@ -47,7 +47,7 @@ const HeaderWrapper = styled.div<{
   $positionStickyDisabled: boolean,
   $translateY: number,
   $transition: TransitionType,
-  animateUpFrom: number | null,
+  $animateUpFrom: number | null,
   $zIndex?: number,
   $top: number,
   $static: boolean
@@ -61,9 +61,9 @@ const HeaderWrapper = styled.div<{
   ${props => props.$transition === TRANSITION_NORMAL && !props.$static
   ? 'transition: transform 0.2s ease-out;'
   : ''}
-  ${props => props.$transition === TRANSITION_PINNED_TO_STATIC && props.animateUpFrom !== null
+  ${props => props.$transition === TRANSITION_PINNED_TO_STATIC && props.$animateUpFrom !== null
   ? css`
-    animation-name: ${keyframesMoveUpFrom(props.animateUpFrom)};
+    animation-name: ${keyframesMoveUpFrom(props.$animateUpFrom)};
   `
   : ''}
   ${props => props.$static ? 'transition: none;' : ''}
@@ -262,7 +262,7 @@ class Headroom extends React.PureComponent<PropsType, StateType> {
       $transition={transition}
       $positionStickyDisabled={!!positionStickyDisabled}
       $static={mode === MODE_STATIC}
-      animateUpFrom={animateUpFrom}
+      $animateUpFrom={animateUpFrom}
       $zIndex={zIndex}>
       {children}
     </HeaderWrapper>
