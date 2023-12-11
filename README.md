@@ -53,11 +53,14 @@ The component generally supports:
 * Firefox >= 40
 * Safari >= 6.2
 
+However, if you want to support non-modern browsers, you are responsible for transpiling the code for your preferred target.
+
 For hiding and revealing the header, the browser needs to support the css-property `position: sticky`.
 You can read about the browser support for that on [caniuse.com](https://caniuse.com/#feat=css-sticky).
 'Partial-Support' is enough for ReactStickyHeadroom to work in most cases.
 
-ReactStickyHeadroom offers types for both TypeScript and FlowJS which should work out of the box.
+Since version 2.x.x, ReactStickyHeadroom is written in TypeScript.
+Support for FlowJS types were dropped in version 2.0.0.
 
 ReactStickyHeadroom is a client-side library and hence does not support Server Side Rendering (SSR) a priori.
 For NextJS you can find more information on how to embed this library [here](https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr).

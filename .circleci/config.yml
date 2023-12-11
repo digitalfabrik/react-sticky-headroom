@@ -19,7 +19,7 @@ jobs:
           paths:
             - node_modules
       - run:
-          command: npm run flow:check-now
+          command: npm run ts:check
       - run:
           command: npm run lint
       - run:

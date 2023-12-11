@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "Node10",
+        "resolveJsonModule": true,
+        "target": "ES6",
+        "skipLibCheck": true,
+        "lib": ["dom", "dom.iterable", "ES6"],
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "importHelpers": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "isolatedModules": true,
+        "jsx": "react",
+        "types": ["node", "jest"],
+        "noEmit": true
+    },
+    "include": ["src/**/*", "demo/**/*", "tools/*"]
+}

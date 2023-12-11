@@ -1,3 +1,19 @@
+# Project specific stuff
+
+index.tsx
+index.js
+index.js.map
+index.d.ts
+index.d.ts.map
+
+!src/index.tsx
+
+junit.xml
+__coverage__
+
+.swc
+
+
 # Yarn stuff
 .pnp.*
 .yarn/*
@@ -8,12 +24,6 @@
 !.yarn/versions
 
 # Created by .ignore support plugin (hsz.mobi)
-### Project specific stuff
-index.js
-index.js.flow
-index.d.ts
-junit.xml
-__coverage__
 
 ### VisualStudioCode template
 .vscode/*
