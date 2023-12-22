@@ -5,6 +5,8 @@ index.js
 index.js.map
 index.d.ts
 index.d.ts.map
+docs/docs.js
+docs/docs.js.LICENSE.txt
 
 !src/index.tsx
 
