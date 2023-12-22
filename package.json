@@ -2,8 +2,8 @@
   "name": "@integreat-app/react-sticky-headroom",
   "version": "1.2.3",
   "engines": {
-    "node": ">=6.9",
-    "npm": ">=3.8"
+    "node": ">=18",
+    "npm": ">=10"
   },
   "license": "MIT",
   "description": "ReactStickyHeadroom is a React Component for hiding the header when scrolling.",
