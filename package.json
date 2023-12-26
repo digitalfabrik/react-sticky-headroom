@@ -1,6 +1,6 @@
 {
   "name": "@integreat-app/react-sticky-headroom",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "engines": {
     "node": ">=18",
     "npm": ">=10"
@@ -15,10 +15,17 @@
   "files": [
     "index.js",
     "index.js.map",
+    "index.cjs",
+    "index.cjs.map",
     "index.d.ts",
     "index.d.ts.map",
     "index.tsx"
   ],
+  "exports": {
+    "import": "./index.js",
+    "require": "./index.cjs",
+    "types": "./index.d.ts"
+  },
   "publishConfig": {
     "access": "public"
   },
