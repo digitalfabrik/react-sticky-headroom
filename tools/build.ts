@@ -23,6 +23,8 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
 // * index.d.ts.map (the source map for index.d.ts)                                     - using typescript
 // * index.js (which strips the typescript annotations and optimizes styled-components) - using swc
 // * index.js.map (the source map for index.js)                                         - using swc
+// * index.cjs (a CommonJS version of index.js for legacy tooling)                      - using swc
+// * index.cjs.map (the source map for index.cjs)                                       - using swc
 
 {
   // Generating index.tsx, index.d.ts, and index.d.ts.map
@@ -56,6 +58,9 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
   // Generating index.js and index.js.map
   const transpiled = transformFileSync('index.tsx', {
     minify: false,
+    module: {
+      type: 'es6'
+    },
     jsc: {
       target: 'es2022',
       experimental: {
@@ -79,12 +84,52 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
   const codeWithSourceMapUrl = transpiled.code + '//# sourceMappingURL=index.js.map'
 
   writeFileSync('./index.js', codeWithSourceMapUrl)
-  console.log('emitted index.dist.js')
+  console.log('emitted index.js')
 
   const sourceMap = transpiled.map
   if (!sourceMap) {
     throw Error('Failed to generate index.js.map')
   }
-  writeFileSync('./index.js.map', sourceMap)
-  console.log('emitted index.dist.js.map')
+  writeFileSync('./index.cjs.map', sourceMap)
+  console.log('emitted index.js.map')
+}
+
+{
+  // Generating index.cjs and index.cjs.map
+  const transpiled = transformFileSync('index.tsx', {
+    minify: false,
+    module: {
+      type: 'commonjs'
+    },
+    jsc: {
+      target: 'es2022',
+      experimental: {
+        plugins: [
+          [
+            '@swc/plugin-styled-components',
+            {
+              displayName: false,
+              ssr: false
+            }
+          ]
+        ]
+      }
+    },
+    sourceMaps: true
+  })
+
+  if (!transpiled) {
+    throw Error('Failed to generate index.cjs')
+  }
+  const codeWithSourceMapUrl = transpiled.code + '//# sourceMappingURL=index.cjs.map'
+
+  writeFileSync('./index.cjs', codeWithSourceMapUrl)
+  console.log('emitted index.cjs')
+
+  const sourceMap = transpiled.map
+  if (!sourceMap) {
+    throw Error('Failed to generate index.cjs.map')
+  }
+  writeFileSync('./index.cjs.map', sourceMap)
+  console.log('emitted index.cjs.map')
 }
