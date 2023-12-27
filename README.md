@@ -54,6 +54,8 @@ The component generally supports:
 * Safari >= 6.2
 
 However, if you want to support non-modern browsers, you are responsible for transpiling the code for your preferred target.
+The distributed files on npm are transpiled for ES2020.
+
 
 For hiding and revealing the header, the browser needs to support the css-property `position: sticky`.
 You can read about the browser support for that on [caniuse.com](https://caniuse.com/#feat=css-sticky).

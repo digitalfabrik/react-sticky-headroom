@@ -23,8 +23,7 @@ const webpackConfig: webpack.Configuration = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        exclude: /node_modules\/.*/,
+        test: /\.tsx?|\.js$/,
         loader: 'swc-loader',
         options: {
           jsc: {
