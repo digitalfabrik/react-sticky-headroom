@@ -62,7 +62,7 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
       type: 'es6'
     },
     jsc: {
-      target: 'es2022',
+      target: 'es2020',
       experimental: {
         plugins: [
           [
@@ -102,7 +102,7 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
       type: 'commonjs'
     },
     jsc: {
-      target: 'es2022',
+      target: 'es2020',
       experimental: {
         plugins: [
           [
