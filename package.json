@@ -21,6 +21,7 @@
     "index.d.ts.map",
     "index.tsx"
   ],
+  "sideEffects": false,
   "exports": {
     "import": "./index.js",
     "require": "./index.cjs",
