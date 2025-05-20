@@ -15,5 +15,9 @@
   "env": {
     "node": true,
     "browser": true
+  },
+  "rules": {
+    "comma-dangle": "off",
+    "space-before-function-paren": "off"
   }
 }

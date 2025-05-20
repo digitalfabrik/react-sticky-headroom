@@ -1,4 +1,5 @@
 # ReactStickyHeadroom
+
 [![npm badge](https://img.shields.io/npm/v/@integreat-app/react-sticky-headroom.svg)](https://www.npmjs.com/package/@integreat-app/react-sticky-headroom)
 
 ReactStickyHeadroom is a React component, that hides your header when you scroll down and shows it
@@ -16,7 +17,9 @@ The component is only compatible with styled-components v4 and higher.
 The component is inspired by [react-headroom](https://kyleamathews.github.io/react-headroom/).
 
 ## Usage
+
 A basic usage example:
+
 ```jsx
 render () {
   return <StickyHeadroom scrollHeight={100}>
@@ -31,31 +34,32 @@ Go to [https://digitalfabrik.github.io/react-sticky-headroom/](https://digitalfa
 
 [![Demo](https://raw.githubusercontent.com/digitalfabrik/react-sticky-headroom/main/demo.gif)](https://digitalfabrik.github.io/react-sticky-headroom/)
 
-
 ## API
-You can pass the following props to ReactStickyHeadroom:
-* `children: React.Node` The header component, that should be hidden and revealed
-* `scrollHeight: number` The maximum amount of px the header should move up when scrolling
-* `pinStart: number` (Default: `0`) The minimum scrollTop position where the transform should start
-* `height?: number` (Optional) The height of the `children` node. Used for calculating the stickyTop position for a sticky ancestor in `onStickyTopChanged`
-* `onStickyTopChanged?: (number) => void` Fired, when Headroom changes its state and `height` is provided. Passes the calculated stickyTop position of an ancestor node.
-* `positionStickyDisabled?: boolean` (Optional, Default: `false`) If true, the header will stay static (e.g. for edge 16 support)
-* `parent: ?HTMLElement` (Optional, Default: `document.documentElement`) The parent element firing the scroll event.
-* `zIndex: number` (Optional, Default: 1) The z-index used by the wrapper.
-* `className?: string` (Optional) A classname for applying custom styles to the wrapper. Use at your own risk.
 
+You can pass the following props to ReactStickyHeadroom:
+
+- `children: React.Node` The header component, that should be hidden and revealed
+- `scrollHeight: number` The maximum amount of px the header should move up when scrolling
+- `pinStart: number` (Default: `0`) The minimum scrollTop position where the transform should start
+- `height?: number` (Optional) The height of the `children` node. Used for calculating the stickyTop position for a sticky ancestor in `onStickyTopChanged`
+- `onStickyTopChanged?: (number) => void` Fired, when Headroom changes its state and `height` is provided. Passes the calculated stickyTop position of an ancestor node.
+- `positionStickyDisabled?: boolean` (Optional, Default: `false`) If true, the header will stay static (e.g. for edge 16 support)
+- `parent: ?HTMLElement` (Optional, Default: `document.documentElement`) The parent element firing the scroll event.
+- `zIndex: number` (Optional, Default: 1) The z-index used by the wrapper.
+- `className?: string` (Optional) A classname for applying custom styles to the wrapper. Use at your own risk.
 
 ## Support
+
 The component generally supports:
-* Internet Explorer 11
-* Edge >= 16
-* Chrome >= 41
-* Firefox >= 40
-* Safari >= 6.2
+
+- Internet Explorer 11
+- Edge >= 16
+- Chrome >= 41
+- Firefox >= 40
+- Safari >= 6.2
 
 However, if you want to support non-modern browsers, you are responsible for transpiling the code for your preferred target.
 The distributed files on npm are transpiled for ES2020.
-
 
 For hiding and revealing the header, the browser needs to support the css-property `position: sticky`.
 You can read about the browser support for that on [caniuse.com](https://caniuse.com/#feat=css-sticky).

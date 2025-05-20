@@ -12,13 +12,11 @@ type MountedHeadroom = ReactWrapper<ComponentProps<typeof Headroom>, object, Ins
 describe('Headroom', () => {
   const MockNode = () => <div />
 
-  const createComponent = (
-    props: Partial<ComponentProps<typeof Headroom>> = {}
-  ) =>
+  const createComponent = (props: Partial<ComponentProps<typeof Headroom>> = {}) =>
     mount(
       <Headroom scrollHeight={50} height={100} {...props}>
         <MockNode />
-      </Headroom>
+      </Headroom>,
     ) as MountedHeadroom
 
   it('should have correct default state', () => {
@@ -26,7 +24,7 @@ describe('Headroom', () => {
     expect(component.state()).toEqual({
       mode: 'static',
       transition: 'none',
-      animateUpFrom: null
+      animateUpFrom: null,
     })
     expect(component.prop('pinStart')).toEqual(0)
   })
@@ -43,7 +41,7 @@ describe('Headroom', () => {
       $top: -50,
       $transition: 'none',
       $translateY: 0,
-      $zIndex: 1
+      $zIndex: 1,
     })
   })
 
@@ -53,17 +51,15 @@ describe('Headroom', () => {
     window.addEventListener = jest.fn()
     window.removeEventListener = jest.fn()
 
-    const component = mount(<Headroom scrollHeight={50}><MockNode /></Headroom>) as MountedHeadroom
+    const component = mount(
+      <Headroom scrollHeight={50}>
+        <MockNode />
+      </Headroom>,
+    ) as MountedHeadroom
     const handleEventCallback = component.instance().handleEvent
-    expect(window.addEventListener).toHaveBeenCalledWith(
-      'scroll',
-      handleEventCallback
-    )
+    expect(window.addEventListener).toHaveBeenCalledWith('scroll', handleEventCallback)
     component.unmount()
-    expect(window.removeEventListener).toHaveBeenCalledWith(
-      'scroll',
-      handleEventCallback
-    )
+    expect(window.removeEventListener).toHaveBeenCalledWith('scroll', handleEventCallback)
 
     window.addEventListener = originalAdd
     window.removeEventListener = originalRemove
@@ -73,7 +69,11 @@ describe('Headroom', () => {
     const originalRaf = window.requestAnimationFrame
     const requestAnimationFrameMock = jest.fn()
     window.requestAnimationFrame = requestAnimationFrameMock
-    const component = mount(<Headroom scrollHeight={50}><MockNode /></Headroom>) as MountedHeadroom
+    const component = mount(
+      <Headroom scrollHeight={50}>
+        <MockNode />
+      </Headroom>,
+    ) as MountedHeadroom
     component.instance().update = jest.fn()
 
     // Call first time
@@ -99,7 +99,7 @@ describe('Headroom', () => {
       expect(component.state()).toEqual({
         mode: 'static',
         transition: 'none',
-        animateUpFrom: null
+        animateUpFrom: null,
       })
     })
 
@@ -110,7 +110,7 @@ describe('Headroom', () => {
       expect(component.state()).toEqual({
         mode: 'static',
         transition: 'none',
-        animateUpFrom: null
+        animateUpFrom: null,
       })
     })
 
@@ -120,7 +120,7 @@ describe('Headroom', () => {
       expect(component.state()).toEqual({
         mode: 'static',
         transition: 'none',
-        animateUpFrom: null
+        animateUpFrom: null,
       })
 
       const offset = 5
@@ -129,7 +129,7 @@ describe('Headroom', () => {
       expect(component.state()).toEqual({
         mode: 'static',
         transition: 'none',
-        animateUpFrom: null
+        animateUpFrom: null,
       })
 
       scrollTo(pinStart + scrollHeight + offset, component)
@@ -137,7 +137,7 @@ describe('Headroom', () => {
       expect(component.state()).toEqual({
         mode: 'unpinned',
         transition: 'none',
-        animateUpFrom: null
+        animateUpFrom: null,
       })
 
       scrollTo(pinStart + offset / 2, component)
@@ -145,14 +145,14 @@ describe('Headroom', () => {
       expect(component.state()).toEqual({
         mode: 'pinned',
         transition: 'normal',
-        animateUpFrom: null
+        animateUpFrom: null,
       })
 
       scrollTo(pinStart + offset, component)
       expect(component.state()).toEqual({
         mode: 'static',
         transition: 'pinned-to-static',
-        animateUpFrom: offset
+        animateUpFrom: offset,
       })
     })
 
@@ -163,13 +163,13 @@ describe('Headroom', () => {
       expect(component.state()).toEqual({
         mode: 'unpinned',
         transition: 'none',
-        animateUpFrom: null
+        animateUpFrom: null,
       })
       scrollTo(pinStart + scrollHeight + offset, component)
       expect(component.state()).toEqual({
         mode: 'unpinned',
         transition: 'none',
-        animateUpFrom: null
+        animateUpFrom: null,
       })
     })
 
@@ -179,7 +179,7 @@ describe('Headroom', () => {
         pinStart,
         height,
         scrollHeight,
-        onStickyTopChanged
+        onStickyTopChanged,
       })
 
       scrollTo(pinStart + scrollHeight + 10, component)
@@ -201,7 +201,7 @@ describe('Headroom', () => {
       $top: -50,
       $transition: 'none',
       $translateY: 0,
-      $zIndex: 1
+      $zIndex: 1,
     })
   })
 
@@ -217,7 +217,7 @@ describe('Headroom', () => {
       $top: 0,
       $transition: 'none',
       $translateY: -50,
-      $zIndex: 1
+      $zIndex: 1,
     })
   })
 
@@ -233,7 +233,7 @@ describe('Headroom', () => {
       $top: 0,
       $transition: 'normal',
       $translateY: -50,
-      $zIndex: 1
+      $zIndex: 1,
     })
   })
 
@@ -249,7 +249,7 @@ describe('Headroom', () => {
       $top: 0,
       $transition: 'normal',
       $translateY: 0,
-      $zIndex: 1
+      $zIndex: 1,
     })
   })
 })

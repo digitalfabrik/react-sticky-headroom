@@ -3,21 +3,15 @@
   "verbose": true,
   "automock": false,
   "testEnvironment": "jsdom",
-  "setupFiles": [
-    "<rootDir>/setupTest.ts"
-  ],
+  "setupFiles": ["<rootDir>/setupTest.ts"],
   "globals": {
     "__DEV__": false
   },
   "transform": {
     "^.+\\.(t|j)sx?$": "@swc/jest"
   },
-    "collectCoverageFrom": [
-    "**/*.{ts,tsx}"
-  ],
+  "collectCoverageFrom": ["**/*.{ts,tsx}"],
   "coverageDirectory": "../__coverage__",
-  "snapshotSerializers": [
-    "enzyme-to-json/serializer"
-  ],
-  "reporters": [ "default", "jest-junit" ]
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "reporters": ["default", "jest-junit"]
 }
