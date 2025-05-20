@@ -5,20 +5,20 @@ const webpackConfig: webpack.Configuration = {
   mode: 'production',
   resolve: {
     modules: [resolve('./node_modules')],
-    extensions: ['.js', '.ts', '.tsx']
+    extensions: ['.js', '.ts', '.tsx'],
   },
   context: resolve(__dirname, '../demo'),
   entry: './demo.tsx',
   output: {
     path: resolve(__dirname, '../docs/'),
-    filename: 'demo.js'
+    filename: 'demo.js',
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
+      'process.env.NODE_ENV': '"production"',
     }),
     new webpack.LoaderOptionsPlugin({ minimize: true }),
-    new webpack.optimize.AggressiveMergingPlugin()
+    new webpack.optimize.AggressiveMergingPlugin(),
   ],
   module: {
     rules: [
@@ -33,16 +33,16 @@ const webpackConfig: webpack.Configuration = {
                   '@swc/plugin-styled-components',
                   {
                     displayName: false,
-                    ssr: false
-                  }
-                ]
-              ]
-            }
-          }
-        }
-      }
-    ]
-  }
+                    ssr: false,
+                  },
+                ],
+              ],
+            },
+          },
+        },
+      },
+    ],
+  },
 }
 
 export default webpackConfig

@@ -2,12 +2,11 @@ import { writeFileSync, copyFileSync } from 'fs'
 import { CompilerOptions, createCompilerHost, createProgram } from 'typescript'
 import { transformFileSync } from '@swc/core'
 
-function compile (fileNames: string[], options: CompilerOptions): Record<string, string> {
+function compile(fileNames: string[], options: CompilerOptions): Record<string, string> {
   // Create a Program with an in-memory emit
   const createdFiles: Record<string, string> = {}
   const host = createCompilerHost(options)
-  host.writeFile = (fileName: string, contents: string) =>
-    (createdFiles[fileName] = contents)
+  host.writeFile = (fileName: string, contents: string) => (createdFiles[fileName] = contents)
 
   // Prepare and emit the d.ts files
   const program = createProgram(fileNames, options, host)
@@ -36,7 +35,7 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
     allowJs: true,
     declaration: true,
     emitDeclarationOnly: true,
-    declarationMap: true
+    declarationMap: true,
   })
 
   const declarationFileName = 'index.d.ts'
@@ -59,7 +58,7 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
   const transpiled = transformFileSync('index.tsx', {
     minify: false,
     module: {
-      type: 'es6'
+      type: 'es6',
     },
     jsc: {
       target: 'es2020',
@@ -69,13 +68,13 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
             '@swc/plugin-styled-components',
             {
               displayName: false,
-              ssr: false
-            }
-          ]
-        ]
-      }
+              ssr: false,
+            },
+          ],
+        ],
+      },
     },
-    sourceMaps: true
+    sourceMaps: true,
   })
 
   if (!transpiled) {
@@ -99,7 +98,7 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
   const transpiled = transformFileSync('index.tsx', {
     minify: false,
     module: {
-      type: 'commonjs'
+      type: 'commonjs',
     },
     jsc: {
       target: 'es2020',
@@ -109,13 +108,13 @@ function compile (fileNames: string[], options: CompilerOptions): Record<string,
             '@swc/plugin-styled-components',
             {
               displayName: false,
-              ssr: false
-            }
-          ]
-        ]
-      }
+              ssr: false,
+            },
+          ],
+        ],
+      },
     },
-    sourceMaps: true
+    sourceMaps: true,
   })
 
   if (!transpiled) {
