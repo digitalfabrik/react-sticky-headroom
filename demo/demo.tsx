@@ -1,5 +1,5 @@
-import ReactDOM from 'react-dom'
 import React from 'react'
+import { createRoot } from 'react-dom/client'
 import StickyHeadroom from '../src/Headroom'
 import styled from 'styled-components'
 import CITIES from './cities'
@@ -120,6 +120,10 @@ class Demo extends React.PureComponent<Record<string, never>, { stickyTop: numbe
 }
 
 const container = document.getElementById('react-container')
-if (container) {
-  ReactDOM.render(<Demo />, container)
+
+if (container == null) {
+  throw new Error("Couldn't find element with id container.")
 }
+
+const root = createRoot(container)
+root.render(<Demo />)
