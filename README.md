@@ -10,9 +10,8 @@ This helps us avoid calculating the height ourselves and therefore browsers don'
 heavy Recalculate-Style-Phases.
 For more information read [here](https://developers.google.com/web/fundamentals/performance/rendering/).
 
-Since it's using [styled-components](https://www.styled-components.com/) internally, it's best to
-use it in apps where you already have styled-components in place.
-The component is only compatible with styled-components v4 and higher.
+Since it's using [emotion](https://emotion.sh) internally, it's best to
+use it in apps where you already have emotion in place.
 
 The component is inspired by [react-headroom](https://kyleamathews.github.io/react-headroom/).
 

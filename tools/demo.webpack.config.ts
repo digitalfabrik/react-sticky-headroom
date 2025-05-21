@@ -30,7 +30,7 @@ const webpackConfig: webpack.Configuration = {
             experimental: {
               plugins: [
                 [
-                  '@swc/plugin-styled-components',
+                  '@swc/plugin-emotion',
                   {
                     displayName: false,
                     ssr: false,
