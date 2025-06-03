@@ -4,7 +4,6 @@ import * as webpack from 'webpack'
 const webpackConfig: webpack.Configuration = {
   mode: 'production',
   resolve: {
-    modules: [resolve('./node_modules')],
     extensions: ['.js', '.ts', '.tsx'],
   },
   context: resolve(__dirname, '../demo'),
@@ -30,7 +29,7 @@ const webpackConfig: webpack.Configuration = {
             experimental: {
               plugins: [
                 [
-                  '@swc/plugin-styled-components',
+                  '@swc/plugin-emotion',
                   {
                     displayName: false,
                     ssr: false,

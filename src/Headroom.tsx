@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { css, keyframes } from 'styled-components'
+import styled from '@emotion/styled'
+import { css, keyframes } from '@emotion/react'
 
 const DIRECTION_UP = 'up'
 const DIRECTION_DOWN = 'down'
