@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import StickyHeadroom from '../src/Headroom'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import CITIES from './cities'
 
 const Header = styled.header`
