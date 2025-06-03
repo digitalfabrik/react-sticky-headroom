@@ -20,7 +20,7 @@ function compile(fileNames: string[], options: CompilerOptions): Record<string, 
 // * index.tsx (a copy of src/Headroom.tsx)                                             - using typescript
 // * index.d.ts (which is the typescript declaration)                                   - using typescript
 // * index.d.ts.map (the source map for index.d.ts)                                     - using typescript
-// * index.js (which strips the typescript annotations and optimizes styled-components) - using swc
+// * index.js (which strips the typescript annotations and optimizes emotion)           - using swc
 // * index.js.map (the source map for index.js)                                         - using swc
 // * index.cjs (a CommonJS version of index.js for legacy tooling)                      - using swc
 // * index.cjs.map (the source map for index.cjs)                                       - using swc
@@ -65,7 +65,7 @@ function compile(fileNames: string[], options: CompilerOptions): Record<string, 
       experimental: {
         plugins: [
           [
-            '@swc/plugin-styled-components',
+            '@swc/plugin-emotion',
             {
               displayName: false,
               ssr: false,
@@ -105,7 +105,7 @@ function compile(fileNames: string[], options: CompilerOptions): Record<string, 
       experimental: {
         plugins: [
           [
-            '@swc/plugin-styled-components',
+            '@swc/plugin-emotion',
             {
               displayName: false,
               ssr: false,
