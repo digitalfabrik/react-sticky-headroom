@@ -122,7 +122,7 @@ class Demo extends React.PureComponent<Record<string, never>, { stickyTop: numbe
 const container = document.getElementById('react-container')
 
 if (container == null) {
-  throw new Error("Couldn't find element with id container.")
+  throw new Error("Couldn't find element with id 'react-container'.")
 }
 
 const root = createRoot(container)
