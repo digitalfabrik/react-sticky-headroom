@@ -67,6 +67,8 @@ You can read about the browser support for that on [caniuse.com](https://caniuse
 Since version 2.x.x, ReactStickyHeadroom is written in TypeScript.
 Support for FlowJS types were dropped in version 2.0.0.
 
+Since version 3.x.x, ReactStickyHeadroom uses @emotion/styled instead of styled-components.
+
 ReactStickyHeadroom is a client-side library and hence does not support Server Side Rendering (SSR) a priori.
 For NextJS you can find more information on how to embed this library [here](https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr).
 
