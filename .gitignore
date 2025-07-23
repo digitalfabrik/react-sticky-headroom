@@ -8,6 +8,7 @@ index.cjs.map
 index.d.ts
 index.d.ts.map
 docs/demo.js
+docs/demo.js.map
 docs/demo.js.LICENSE.txt
 
 !src/index.tsx

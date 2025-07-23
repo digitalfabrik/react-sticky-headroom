@@ -8,6 +8,7 @@ const webpackConfig: webpack.Configuration = {
   },
   context: resolve(__dirname, '../demo'),
   entry: './demo.tsx',
+  devtool: "source-map",
   output: {
     path: resolve(__dirname, '../docs/'),
     filename: 'demo.js',
@@ -33,6 +34,7 @@ const webpackConfig: webpack.Configuration = {
                   {
                     displayName: false,
                     ssr: false,
+                    sourceMap: false
                   },
                 ],
               ],
