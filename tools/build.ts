@@ -69,6 +69,7 @@ function compile(fileNames: string[], options: CompilerOptions): Record<string, 
             {
               displayName: false,
               ssr: false,
+              sourceMap: false
             },
           ],
         ],
@@ -89,7 +90,7 @@ function compile(fileNames: string[], options: CompilerOptions): Record<string, 
   if (!sourceMap) {
     throw Error('Failed to generate index.js.map')
   }
-  writeFileSync('./index.cjs.map', sourceMap)
+  writeFileSync('./index.js.map', sourceMap)
   console.log('emitted index.js.map')
 }
 
@@ -109,6 +110,7 @@ function compile(fileNames: string[], options: CompilerOptions): Record<string, 
             {
               displayName: false,
               ssr: false,
+              sourceMap: false
             },
           ],
         ],

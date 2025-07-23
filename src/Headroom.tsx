@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { css, keyframes } from '@emotion/react'
+import { keyframes } from '@emotion/react'
 
 const DIRECTION_UP = 'up'
 const DIRECTION_DOWN = 'down'
@@ -60,12 +60,10 @@ const HeaderWrapper = styled.div<{
   animation-duration: 0.2s;
   animation-timing-function: ease-out;
   ${props => (props.$transition === TRANSITION_NORMAL && !props.$static ? 'transition: transform 0.2s ease-out;' : '')}
-  ${props =>
+  animation-name: ${props =>
     props.$transition === TRANSITION_PINNED_TO_STATIC && props.$animateUpFrom !== null
-      ? css`
-          animation-name: ${keyframesMoveUpFrom(props.$animateUpFrom)};
-        `
-      : ''}
+      ? keyframesMoveUpFrom(props.$animateUpFrom)
+      : 'none'};
   ${props => (props.$static ? 'transition: none;' : '')}
 `
 
