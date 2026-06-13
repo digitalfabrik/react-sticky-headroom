@@ -1,16 +1,17 @@
 import { resolve } from 'path'
-import * as webpack from 'webpack'
+import webpack from 'webpack'
 
-const webpackConfig: webpack.Configuration = {
+/** @type {import('webpack').Configuration} */
+const webpackConfig = {
   mode: 'production',
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
   },
-  context: resolve(__dirname, '../demo'),
+  context: resolve(import.meta.dirname, '../demo'),
   entry: './demo.tsx',
-  devtool: "source-map",
+  devtool: 'source-map',
   output: {
-    path: resolve(__dirname, '../docs/'),
+    path: resolve(import.meta.dirname, '../docs/'),
     filename: 'demo.js',
   },
   plugins: [
@@ -34,7 +35,7 @@ const webpackConfig: webpack.Configuration = {
                   {
                     displayName: false,
                     ssr: false,
-                    sourceMap: false
+                    sourceMap: false,
                   },
                 ],
               ],
