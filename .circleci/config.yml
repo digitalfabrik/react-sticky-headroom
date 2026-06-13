@@ -19,13 +19,15 @@ jobs:
           paths:
             - node_modules
       - run:
-          command: npm run ts:check
-      - run:
           command: npm run lint
       - run:
-          command: npm run test:coverage --ci
+          command: npm run ts:check
+      - run:
+          command: npm run format:check
       - run:
           command: npm run build
+      - run:
+          command: npm run build:demo
 
 workflows:
   version: 2
