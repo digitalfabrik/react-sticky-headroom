@@ -69,7 +69,7 @@ function compile(fileNames: string[], options: CompilerOptions): Record<string, 
             {
               displayName: false,
               ssr: false,
-              sourceMap: false
+              sourceMap: false,
             },
           ],
         ],
@@ -110,7 +110,7 @@ function compile(fileNames: string[], options: CompilerOptions): Record<string, 
             {
               displayName: false,
               ssr: false,
-              sourceMap: false
+              sourceMap: false,
             },
           ],
         ],

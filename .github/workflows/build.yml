@@ -24,6 +24,8 @@ jobs:
         run: npm run lint
       - name: Typescript
         run: npm run ts:check
+      - name: Format
+        run: npm run format:check
       - name: Build Library
         run: npm run build
       - name: Build Demo

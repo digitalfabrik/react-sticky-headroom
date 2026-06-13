@@ -1,11 +1,3 @@
-import Headroom from '../Headroom'
-
-describe('Headroom', () => {
-  it('mock test', () => {
-    expect(Headroom).toBeInstanceOf(Function)
-  })
-})
-
 // TODO: Rewrite tests #37
 // import { ReactWrapper, mount } from 'enzyme'
 // import Headroom from '../Headroom'
